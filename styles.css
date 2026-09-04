@@ -1,0 +1,74 @@
+:root{
+  --maroon:#4A0E17;
+  --maroon-deep:#2B0810;
+  --maroon-soft:#6B1824;
+  --gold:#C99738;
+  --gold-light:#E7C879;
+  --ivory:#F5EAD5;
+  --ivory-soft:#EADBC2;
+  --green:#4B6B3A;
+  --ink:#371017;
+  --vh:1vh;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--maroon-deep)}
+body{margin:0;color:var(--ivory);background:var(--maroon-deep);font-family:Georgia,"Times New Roman",serif;overflow-x:hidden}
+a{color:inherit}
+button{font:inherit}
+.cinematic-bg{position:fixed;inset:0;z-index:-10;overflow:hidden;background:
+  radial-gradient(circle at 50% 38%,rgba(201,151,56,.13),transparent 38%),
+  linear-gradient(145deg,#53111d 0%,#3c0b14 44%,#26070d 100%)}
+.cinematic-bg:after{content:"";position:absolute;inset:clamp(12px,2vw,28px);border:1px solid rgba(201,151,56,.55);box-shadow:inset 0 0 0 5px rgba(201,151,56,.05),0 0 100px rgba(0,0,0,.2);pointer-events:none}
+.grain{position:absolute;inset:0;opacity:.17;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.38'/%3E%3C/svg%3E")}
+.chakra-wrap{position:absolute;left:50%;top:50%;width:min(72vw,760px);aspect-ratio:1;transform:translate(-50%,-50%);opacity:.13;filter:saturate(.85)}
+.chakra{width:100%;height:100%;animation:breath 9s ease-in-out infinite}
+@keyframes breath{0%,100%{transform:scale(.985);opacity:.86}50%{transform:scale(1.02);opacity:1}}
+.corner{position:absolute;bottom:0;width:min(22vw,230px);color:rgba(201,151,56,.5)}
+.corner svg{display:block;width:100%;height:auto}.corner-left{left:1.5vw}.corner-right{right:1.5vw}
+.banana{position:absolute;bottom:-4vh;width:17vw;height:41vh;opacity:.18;filter:blur(.2px)}
+.banana:before,.banana:after{content:"";position:absolute;bottom:0;left:49%;width:7%;height:100%;background:linear-gradient(var(--green),transparent);border-radius:100% 100% 0 0;transform-origin:bottom}
+.banana:before{transform:rotate(-22deg)}.banana:after{transform:rotate(25deg)}
+.banana-left{left:3vw}.banana-right{right:3vw;transform:scaleX(-1)}
+.site-header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:flex-start;justify-content:space-between;padding:22px 28px;pointer-events:none}
+.monogram{pointer-events:auto;text-decoration:none;width:52px;height:52px;border:1px solid rgba(201,151,56,.75);border-radius:50%;display:grid;place-items:center;color:var(--gold-light);font-size:17px;letter-spacing:-1px;background:rgba(49,8,15,.25);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.monogram span{font-size:12px;margin:0 1px;color:var(--ivory-soft)}
+.site-header nav{pointer-events:auto;display:flex;flex-direction:column;gap:12px;align-items:flex-end;margin-top:6px}
+.nav-dot{width:8px;height:8px;border:1px solid rgba(231,200,121,.72);border-radius:50%;background:transparent;transition:.3s ease;position:relative}
+.nav-dot:before{content:attr(data-label);position:absolute;right:18px;top:50%;transform:translateY(-52%);opacity:0;white-space:nowrap;font:10px/1 Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-light);transition:.2s ease}
+.nav-dot:hover:before{opacity:.8}.nav-dot.active{background:var(--gold-light);transform:scale(1.3);box-shadow:0 0 0 4px rgba(231,200,121,.08)}
+main{position:relative}
+.scene{min-height:100svh;min-height:calc(var(--vh)*100);display:grid;place-items:center;padding:100px 7vw 90px;scroll-margin-top:0;position:relative;isolation:isolate}
+.scene:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(74,14,23,.02),rgba(23,3,7,.18));z-index:-1;opacity:.25;transition:opacity 1s ease}
+.scene.is-visible:before{opacity:.66}
+.scene-card{width:min(920px,100%);text-align:center;opacity:.12;transform:translateY(48px) scale(.98);filter:blur(8px);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1),filter 1s ease}
+.scene.is-visible .scene-card{opacity:1;transform:none;filter:none}
+.eyebrow{margin:0 0 18px;color:var(--gold-light);font:600 11px/1.4 Arial,sans-serif;letter-spacing:.34em;text-transform:uppercase}
+.telugu{font-family:"Noto Serif Telugu","Nirmala UI",serif;letter-spacing:.08em;text-transform:none;font-size:15px}
+.kicker{margin:0 auto 12px;text-transform:uppercase;letter-spacing:.25em;font:10px/1.5 Arial,sans-serif;color:rgba(245,234,213,.7)}
+h1{margin:0;display:flex;flex-direction:column;font-weight:400;line-height:.86;text-shadow:0 4px 30px rgba(0,0,0,.3)}
+h1 span{font-size:clamp(62px,10vw,138px);letter-spacing:-.055em}h1 em{font-size:clamp(28px,4vw,48px);line-height:1.2;color:var(--gold);font-weight:400}
+.gold-rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:28px auto;width:min(420px,82%);color:var(--gold)}
+.gold-rule i{display:block;height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold),transparent)}.gold-rule b{font-size:12px;font-weight:400}
+.intro{font-size:clamp(16px,2vw,21px);line-height:1.7;color:rgba(245,234,213,.84);max-width:680px;margin:0 auto 28px}
+.date-lockup{display:flex;align-items:center;justify-content:center;gap:16px;color:var(--gold-light);margin-top:8px}.date-big{font-size:56px;line-height:1}.date-lockup div{text-align:left;border-left:1px solid rgba(201,151,56,.55);padding-left:16px}.date-lockup strong{display:block;font-size:23px;font-weight:400}.date-lockup small{font:10px/1.6 Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory-soft)}
+.place{font:11px/1 Arial,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:rgba(245,234,213,.68);margin:20px 0 0}
+.scroll-cue{display:inline-flex;flex-direction:column;align-items:center;gap:7px;margin-top:42px;text-decoration:none;color:rgba(245,234,213,.58);font:9px/1.2 Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase}.scroll-cue i{font-size:18px;color:var(--gold);font-style:normal;animation:drop 1.6s infinite}@keyframes drop{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(7px);opacity:1}}
+.temple-arch{position:absolute;top:2.2vh;left:50%;transform:translateX(-50%);width:min(78vw,900px);height:32vh;border-top:2px solid rgba(201,151,56,.46);border-radius:50% 50% 0 0/100% 100% 0 0;pointer-events:none}
+.temple-arch:before,.temple-arch:after{content:"";position:absolute;top:33%;height:38vh;border-left:1px solid rgba(201,151,56,.24)}.temple-arch:before{left:0}.temple-arch:after{right:0}.crest{position:absolute;top:-11px;color:var(--gold);font-size:18px}.crest-1{left:18%}.crest-2{left:50%;transform:translateX(-50%);top:-15px}.crest-3{right:18%}
+.ganesha-mark{position:absolute;left:50%;top:18px;transform:translateX(-50%);width:58px;color:rgba(231,200,121,.78)}.ganesha-mark svg{width:100%;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.story-card h2,.events-card h2,.wedding-card h2,.rsvp-card h2{font-weight:400;font-size:clamp(46px,7vw,88px);line-height:.95;letter-spacing:-.04em;margin:0 0 20px}.scene-card h2 span{color:var(--gold-light);font-style:italic}.lead{font-size:22px;color:var(--gold-light);margin:20px 0 10px}.story-card>p:not(.eyebrow):not(.lead){max-width:650px;margin:0 auto;line-height:1.85;color:rgba(245,234,213,.78)}
+.heritage-pair{display:flex;justify-content:center;align-items:center;gap:70px;margin-top:50px}.mini-seal,.dance-line{width:160px;height:160px;border:1px solid rgba(201,151,56,.35);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--gold-light);position:relative}.mini-seal:before{content:"✺";font-size:46px;margin-bottom:5px;opacity:.72}.mini-seal span,.dance-line span{font-family:"Noto Serif Telugu","Nirmala UI",serif;font-size:17px}.mini-seal small,.dance-line small{font:9px/1.4 Arial,sans-serif;text-transform:uppercase;letter-spacing:.2em;color:rgba(245,234,213,.6)}.dance-line svg{position:absolute;inset:12px;width:calc(100% - 24px);height:calc(100% - 24px);fill:none;stroke:rgba(201,151,56,.32);stroke-width:4;stroke-linecap:round}.dance-line span,.dance-line small{z-index:1;background:rgba(74,14,23,.82);padding-inline:5px}.dance-line span{margin-top:60px}
+.events-card{width:min(1100px,100%)}.event-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}.event-item{padding:42px 28px 34px;border:1px solid rgba(201,151,56,.33);background:linear-gradient(155deg,rgba(82,17,28,.66),rgba(39,7,13,.48));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(17,2,6,.16)}.event-no{font:10px/1 Arial,sans-serif;letter-spacing:.22em;color:var(--gold);margin-bottom:22px}.event-telugu{font-family:"Noto Serif Telugu","Nirmala UI",serif;color:var(--gold-light);margin:0 0 7px}.event-item h3{font-size:26px;font-weight:400;margin:0 0 15px}.event-item p:not(.event-telugu){font-size:15px;line-height:1.65;color:rgba(245,234,213,.72);margin:0 0 18px}.event-item small{margin-top:auto;font:9px/1.5 Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;color:rgba(231,200,121,.68)}
+.muhurtham-time{display:flex;align-items:baseline;justify-content:center;gap:16px;margin:30px 0 10px}.muhurtham-time strong{font-size:clamp(80px,14vw,160px);font-weight:400;line-height:.8;color:var(--ivory)}.muhurtham-time span{font:10px/1 Arial,sans-serif;text-transform:uppercase;letter-spacing:.24em;color:var(--gold-light)}.wedding-date{font-size:26px;margin:20px 0 0}.venue{font-size:22px;color:var(--gold-light);margin:12px 0}.small-note{max-width:520px;margin:18px auto 0;line-height:1.7;color:rgba(245,234,213,.6);font-size:14px}
+.rsvp-card>p:not(.eyebrow):not(.signature):not(.blessing){max-width:560px;margin:15px auto 28px;line-height:1.7;color:rgba(245,234,213,.75)}.rsvp-button{appearance:none;border:1px solid var(--gold);background:var(--gold);color:var(--maroon-deep);padding:15px 34px;text-transform:uppercase;letter-spacing:.22em;font:700 11px/1 Arial,sans-serif;cursor:pointer;transition:.25s}.rsvp-button:hover{transform:translateY(-2px);background:var(--gold-light)}.rsvp-panel{width:min(420px,90%);margin:18px auto;padding:20px;border:1px solid rgba(201,151,56,.35);background:rgba(34,5,11,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.rsvp-panel p{margin:0 0 12px}.rsvp-panel button{background:none;color:var(--gold-light);border:0;text-decoration:underline;cursor:pointer}.signature{font-size:34px;font-style:italic;color:var(--gold-light);margin:38px 0 8px}.signature span{color:var(--ivory);font-size:22px}.blessing{font-family:"Noto Serif Telugu","Nirmala UI",serif;color:rgba(245,234,213,.66);margin:0}
+footer{padding:22px;text-align:center;color:rgba(245,234,213,.42);font:9px/1.4 Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;background:rgba(29,4,9,.35)}
+@media (max-width:780px){
+  .site-header{padding:18px 17px}.monogram{width:44px;height:44px}.site-header nav{gap:10px}.nav-dot:before{display:none}
+  .scene{padding:90px 24px 72px}.chakra-wrap{width:115vw;opacity:.095}.corner{width:38vw;opacity:.72}.banana{width:26vw;height:34vh}
+  .temple-arch{width:88vw;height:26vh;top:2.5vh}.temple-arch:before,.temple-arch:after{height:30vh}
+  h1 span{font-size:clamp(58px,19vw,92px)}h1 em{font-size:30px}.intro{font-size:16px;max-width:92%}.date-lockup{gap:12px}.date-big{font-size:48px}.date-lockup strong{font-size:20px}.date-lockup small{font-size:8px;letter-spacing:.1em}
+  .story-card h2,.events-card h2,.wedding-card h2,.rsvp-card h2{font-size:clamp(44px,13vw,67px)}.heritage-pair{gap:18px}.mini-seal,.dance-line{width:132px;height:132px}
+  .event-grid{grid-template-columns:1fr;gap:12px}.event-item{min-height:auto;padding:30px 24px}.events-card{padding-top:8px}
+  .muhurtham-time{gap:10px}.muhurtham-time strong{font-size:28vw}.muhurtham-time span{font-size:8px}.wedding-date{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.chakra,.scroll-cue i{animation:none}.scene-card{transition:none}.scene-card{opacity:1;transform:none;filter:none}}
