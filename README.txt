@@ -1,23 +1,20 @@
-DEEPI & CHAITANYA — TELUGU HERITAGE WEDDING WEBSITE
+ChaiDeep Bilingual Telugu Heritage Wedding Invitation
 
-Files:
-- index.html
-- styles.css
-- script.js
+Open index.html in Chrome, Safari, Edge, or Firefox.
 
-How to preview:
-1. Keep all three files in the same folder.
-2. Double-click index.html to open it in Chrome or Safari.
-3. For hosting, upload this whole folder to Netlify, Vercel, GitHub Pages, or any standard web host.
+Highlights
+- Fixed maroon heritage background with scroll-linked Amaravathi Kamala Chakra rotation.
+- Original Kuchipudi-inspired dancers plus banana and coconut trees at the edges.
+- Full English / Telugu language switching across all five sections.
+- Scratch-to-reveal wedding date with confetti.
+- Live countdown to Nov 22, 2026 10:32 AM in Tampa, Florida (EST).
+- Expandable Wedding Festivities cards.
+- Personalized RSVP journey for Family/Single and Yes/No responses.
 
-Design behavior:
-- The maroon heritage background stays fixed.
-- The Amaravathi-inspired Kamala Chakra remains as a low-opacity watermark.
-- Only the invitation scenes/content change as the visitor scrolls.
-- Full responsive layout for mobile and desktop.
-- Includes iOS Safari viewport handling and reduced-motion accessibility.
+Important RSVP note
+The RSVP interaction in this self-contained preview does not send or store guest responses. To collect RSVPs, connect a Google Form, Formspree, Supabase, Firebase, or your own backend before publishing.
 
-Easy edits:
-- Names/date/location: index.html
-- Colors: the :root variables at the top of styles.css
-- RSVP: replace the RSVP panel text/button with your Google Form or preferred form link.
+Event details
+Pellikuthuru / Pelli Koduku date and venue are placeholders until finalized.
+Mehendi / Sangeeth currently shows 7:30 PM–11:30 PM with venue to be finalized.
+Wedding / Muhurtham is Nov 22, 2026 at 10:32 AM, Hindu Temple of Florida – Temple Hall, 5509 Lynn Road, Tampa, FL 33624.

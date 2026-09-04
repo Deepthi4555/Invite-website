@@ -2,192 +2,1200 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#4A0E17" />
-  <meta name="description" content="Deepthi & Chaitanya — Telugu heritage wedding invitation" />
-  <title>Deepthi & Chaitanya | Wedding Invitation</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="ChaiDeep — bilingual Telugu heritage wedding invitation" />
+  <title>ChaiDeep | Wedding Invitation</title>
+  <style>
+    :root {
+      --maroon:#4A0E17;
+      --maroon-deep:#25070c;
+      --gold:#C99738;
+      --gold-bright:#E8C56C;
+      --gold-dark:#8f5d1d;
+      --ivory:#F3E4B6;
+      --ivory-soft:#FFF6DA;
+      --green:#6E7C3B;
+      --green-dark:#405426;
+      --scroll-rotation:0deg;
+      --dance-shift:0px;
+      --dance-tilt:0deg;
+      --dance-tilt-neg:0deg;
+      --tree-sway:0deg;
+      --tree-sway-neg:0deg;
+    }
+
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--maroon-deep); }
+    body {
+      margin:0;
+      min-width:320px;
+      color:var(--ivory-soft);
+      background:var(--maroon);
+      font-family: Georgia, 'Times New Roman', serif;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+    a { color:inherit; }
+    button { font:inherit; }
+
+    /* Fixed cinematic heritage stage. The page content scrolls over this. */
+    .heritage-stage {
+      position:fixed;
+      inset:0;
+      z-index:0;
+      overflow:hidden;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(190,130,42,.10), transparent 34%),
+        linear-gradient(180deg, #58101d 0%, var(--maroon) 45%, #390a12 100%);
+    }
+    .heritage-stage::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      opacity:.08;
+      background-image:
+        radial-gradient(circle at 20% 10%, #fff 0 1px, transparent 1.5px),
+        radial-gradient(circle at 75% 70%, #fff 0 1px, transparent 1.5px);
+      background-size:23px 23px, 29px 29px;
+      mix-blend-mode:overlay;
+    }
+    .heritage-stage::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      box-shadow:inset 0 0 160px rgba(15,0,4,.72);
+    }
+
+    .chakra-shell {
+      position:absolute;
+      left:50%; top:50%;
+      width:min(82vmin, 900px);
+      aspect-ratio:1;
+      transform:translate(-50%,-50%) rotate(var(--scroll-rotation)) scale(1.08);
+      transform-origin:center;
+      opacity:.29;
+      will-change:transform;
+      filter:drop-shadow(0 24px 34px rgba(14,0,3,.36));
+    }
+    .chakra-shell svg { width:100%; height:100%; display:block; }
+
+    .side-dancer {
+      position:absolute;
+      top:50%;
+      width:clamp(110px, 14vw, 220px);
+      aspect-ratio: .62;
+      opacity:.78;
+      filter:drop-shadow(0 14px 18px rgba(18,0,4,.26));
+      will-change:transform;
+    }
+    .side-dancer.left {
+      left:max(1.5vw, 10px);
+      transform:translateY(calc(-50% + var(--dance-shift))) rotate(var(--dance-tilt));
+      transform-origin:52% 68%;
+    }
+    .side-dancer.right {
+      right:max(1.5vw, 10px);
+      transform:translateY(calc(-50% - var(--dance-shift))) rotate(var(--dance-tilt-neg)) scaleX(-1);
+      transform-origin:48% 68%;
+    }
+    .side-dancer svg { width:100%; height:100%; overflow:visible; }
+
+    .tree { position:absolute; bottom:-1.5vh; opacity:.88; will-change:transform; }
+    .tree svg { width:100%; height:100%; display:block; overflow:visible; }
+    .banana-left { left:-1.8vw; width:clamp(150px, 17vw, 280px); height:42vh; transform:rotate(var(--tree-sway)); transform-origin:50% 100%; }
+    .banana-right { right:-1.8vw; width:clamp(150px, 17vw, 280px); height:42vh; transform:rotate(var(--tree-sway-neg)) scaleX(-1); transform-origin:50% 100%; }
+    .coconut-left { left:10vw; width:clamp(95px, 10vw, 155px); height:36vh; opacity:.56; transform:rotate(var(--tree-sway-neg)); transform-origin:50% 100%; }
+    .coconut-right { right:10vw; width:clamp(95px, 10vw, 155px); height:36vh; opacity:.56; transform:rotate(var(--tree-sway)) scaleX(-1); transform-origin:50% 100%; }
+
+    .temple-frame { position:absolute; inset:0; opacity:.72; }
+    .temple-frame svg { width:100%; height:100%; display:block; }
+
+    .site-header {
+      position:fixed;
+      inset:0 0 auto 0;
+      z-index:20;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:max(14px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) 12px max(18px, env(safe-area-inset-left));
+      background:linear-gradient(180deg, rgba(37,7,12,.82), rgba(37,7,12,0));
+      pointer-events:none;
+    }
+    .monogram {
+      pointer-events:auto;
+      text-decoration:none;
+      color:var(--gold-bright);
+      letter-spacing:.08em;
+      font-size:18px;
+      text-shadow:0 2px 10px rgba(0,0,0,.3);
+    }
+    .monogram span { font-size:.75em; opacity:.85; padding:0 .1em; }
+    .nav-dots { display:flex; gap:9px; align-items:center; pointer-events:auto; }
+    .nav-dot { width:9px; height:9px; border-radius:50%; border:1px solid rgba(232,197,108,.7); background:rgba(74,14,23,.42); transition:.25s ease; }
+    .nav-dot.active { transform:scale(1.45); background:var(--gold-bright); box-shadow:0 0 0 4px rgba(232,197,108,.12); }
+
+    main { position:relative; z-index:5; }
+    .scene {
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      padding:clamp(90px, 10vh, 120px) clamp(22px, 7vw, 90px) clamp(72px, 10vh, 110px);
+      scroll-margin-top:20px;
+    }
+    .scene-card {
+      position:relative;
+      width:min(760px, 72vw);
+      text-align:center;
+      padding:clamp(28px,4vw,58px) clamp(24px,5vw,68px);
+      border:1px solid rgba(232,197,108,.34);
+      border-radius:28px 28px 18px 18px;
+      background:linear-gradient(180deg, rgba(74,14,23,.70), rgba(54,10,17,.82));
+      box-shadow:0 28px 60px rgba(20,0,5,.34), inset 0 1px rgba(255,255,255,.04);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+      opacity:.20;
+      transform:translateY(50px) scale(.97);
+      transition:opacity .75s ease, transform .85s cubic-bezier(.2,.75,.2,1);
+    }
+    .scene-card::before {
+      content:"";
+      position:absolute;
+      inset:10px;
+      border:1px solid rgba(232,197,108,.13);
+      border-radius:21px 21px 13px 13px;
+      pointer-events:none;
+    }
+    .scene.is-visible .scene-card { opacity:1; transform:translateY(0) scale(1); }
+
+    .eyebrow { color:var(--gold-bright); text-transform:uppercase; letter-spacing:.22em; font-size:12px; margin:0 0 18px; }
+    .telugu { text-transform:none; letter-spacing:.06em; font-family:'Noto Serif Telugu','Nirmala UI',serif; }
+    h1,h2,h3,p { position:relative; z-index:1; }
+    h1 { margin:12px 0 18px; font-size:clamp(50px, 7.5vw, 92px); font-weight:400; line-height:.92; color:var(--gold-bright); font-style:italic; text-shadow:0 5px 25px rgba(0,0,0,.30); }
+    h1 span { display:block; }
+    h1 em { display:block; font-size:.55em; margin:.16em 0; font-style:normal; }
+    h2 { margin:0 0 20px; font-size:clamp(37px, 5.6vw, 70px); line-height:1.04; font-weight:400; }
+    h2 span { color:var(--gold-bright); font-style:italic; }
+    .kicker,.lead { font-size:clamp(17px,2vw,22px); font-style:italic; color:#f6e5b5; }
+    .intro,.story-card>p:not(.eyebrow):not(.lead),.rsvp-card>p:not(.eyebrow):not(.signature):not(.telugu-blessing) { font-size:clamp(16px,1.5vw,19px); line-height:1.7; color:#f8edcf; }
+    .gold-rule { display:flex; align-items:center; gap:12px; justify-content:center; color:var(--gold-bright); margin:24px auto; max-width:330px; }
+    .gold-rule i { height:1px; flex:1; background:linear-gradient(90deg,transparent,var(--gold-bright)); }
+    .gold-rule i:last-child { transform:scaleX(-1); }
+    .gold-rule b { font-weight:400; }
+    .date-lockup { display:flex; align-items:center; justify-content:center; gap:18px; margin-top:30px; }
+    .date-big { font-size:68px; line-height:1; color:var(--gold-bright); }
+    .date-lockup div { display:flex; flex-direction:column; align-items:flex-start; }
+    .date-lockup strong { text-transform:uppercase; letter-spacing:.18em; font-size:17px; }
+    .date-lockup small { margin-top:8px; letter-spacing:.07em; color:#f0dcaa; }
+    .place { margin-top:18px; color:var(--gold-bright); letter-spacing:.12em; text-transform:uppercase; font-size:14px; }
+    .scroll-cue { display:inline-flex; flex-direction:column; gap:8px; margin-top:26px; text-decoration:none; color:#f6df9e; font-size:12px; letter-spacing:.16em; text-transform:uppercase; }
+    .scroll-cue i { font-size:20px; animation:floatArrow 1.8s ease-in-out infinite; }
+    @keyframes floatArrow { 0%,100%{transform:translateY(0)}50%{transform:translateY(5px)} }
+
+    .heritage-pair { display:flex; justify-content:center; gap:38px; margin-top:30px; align-items:center; }
+    .mini-seal,.dance-line { width:150px; min-height:150px; border:1px solid rgba(232,197,108,.30); border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; color:var(--gold-bright); }
+    .mini-seal span,.dance-line span { font-family:'Noto Serif Telugu','Nirmala UI',serif; font-size:18px; }
+    .mini-seal small,.dance-line small { margin-top:5px; color:#f2dfaf; font-size:11px; letter-spacing:.14em; text-transform:uppercase; }
+    .dance-line svg { width:73px; height:73px; fill:none; stroke:var(--gold-bright); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; margin-bottom:7px; }
+
+    .event-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:30px; }
+    .event-item { position:relative; padding:28px 18px 24px; border:1px solid rgba(232,197,108,.23); border-radius:16px; background:rgba(43,7,13,.28); }
+    .event-no { position:absolute; right:12px; top:10px; color:rgba(232,197,108,.34); font-size:25px; }
+    .event-telugu { color:var(--gold-bright); font-family:'Noto Serif Telugu','Nirmala UI',serif; margin:0 0 8px; }
+    .event-item h3 { margin:0 0 12px; color:#fff0c9; font-weight:400; font-size:20px; }
+    .event-item p:not(.event-telugu) { margin:0; color:#ebd9b0; font-size:14px; line-height:1.55; }
+    .event-item small { display:block; margin-top:15px; color:#dcbf77; line-height:1.45; }
+
+    .muhurtham-time { display:flex; align-items:baseline; justify-content:center; gap:14px; margin:28px 0 10px; color:var(--gold-bright); }
+    .muhurtham-time strong { font-size:clamp(64px,9vw,104px); font-weight:400; line-height:1; }
+    .muhurtham-time span { text-transform:uppercase; letter-spacing:.16em; font-size:13px; }
+    .wedding-date,.venue { color:#f8e8be; font-size:19px; letter-spacing:.08em; }
+    .venue { color:var(--gold-bright); font-size:21px; }
+    .address { color:#efdca8; font-size:15px; line-height:1.6; margin-top:6px; }
+    .small-note { color:#cdbb91; font-size:12px; line-height:1.5; margin-top:18px; }
+
+    .rsvp-button { margin-top:20px; border:1px solid var(--gold-bright); background:rgba(232,197,108,.10); color:var(--gold-bright); border-radius:999px; padding:14px 31px; letter-spacing:.18em; text-transform:uppercase; cursor:pointer; transition:.25s ease; }
+    .rsvp-button:hover { background:var(--gold-bright); color:var(--maroon-deep); transform:translateY(-2px); }
+    .rsvp-panel { margin:18px auto 0; padding:16px; border-radius:15px; max-width:420px; background:rgba(27,3,8,.55); border:1px solid rgba(232,197,108,.20); }
+    .rsvp-panel button { border:0; background:none; color:var(--gold-bright); text-decoration:underline; cursor:pointer; }
+    .signature { margin:32px 0 4px; color:var(--gold-bright); font-size:29px; font-style:italic; }
+    .signature span { font-size:.75em; }
+    .telugu-blessing { margin:4px 0 0; font-family:'Noto Serif Telugu','Nirmala UI',serif; color:#f1d993; }
+
+    footer { position:relative; z-index:6; text-align:center; padding:22px 15px calc(24px + env(safe-area-inset-bottom)); color:rgba(246,229,181,.65); font-size:12px; letter-spacing:.12em; background:#300810; }
+
+    @media (max-width: 980px) {
+      .scene-card { width:min(760px, 78vw); }
+      .side-dancer { width:clamp(95px,14vw,155px); opacity:.66; }
+      .banana-left,.banana-right { width:19vw; opacity:.70; }
+      .coconut-left,.coconut-right { opacity:.40; }
+    }
+
+    @media (max-width: 720px) {
+      .scene { padding-left:16px; padding-right:16px; }
+      .scene-card { width:min(92vw, 560px); padding:34px 23px; border-radius:22px; }
+      .chakra-shell { width:112vmin; opacity:.20; }
+      .side-dancer { top:47%; width:83px; opacity:.36; }
+      .side-dancer.left { left:-25px; }
+      .side-dancer.right { right:-25px; }
+      .banana-left,.banana-right { width:135px; height:34vh; opacity:.52; }
+      .coconut-left,.coconut-right { display:none; }
+      .event-grid { grid-template-columns:1fr; }
+      .heritage-pair { gap:16px; }
+      .mini-seal,.dance-line { width:128px; min-height:128px; }
+      .date-lockup { gap:13px; }
+      .date-big { font-size:58px; }
+      .date-lockup strong { font-size:14px; }
+      .date-lockup small { font-size:10px; }
+      .site-header { padding-left:14px; padding-right:14px; }
+      .nav-dots { gap:7px; }
+    }
+
+    @media (max-width: 440px) {
+      .scene-card { width:94vw; padding:30px 19px; }
+      .side-dancer { opacity:.28; width:76px; }
+      .banana-left,.banana-right { opacity:.43; width:120px; }
+      .heritage-pair { transform:scale(.92); transform-origin:center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .chakra-shell { transform:translate(-50%,-50%) scale(1.08) !important; }
+      .side-dancer.left,.side-dancer.right,.tree { transform:none !important; }
+      .side-dancer.left,.side-dancer.right { top:50%; }
+    }
+  
+
+    /* ===== ChaiDeep bilingual redesign ===== */
+    .site-header { gap:12px; }
+    .monogram { font-weight:600; }
+    .language-mini {
+      pointer-events:auto; display:flex; gap:6px; align-items:center;
+      padding:4px; border:1px solid rgba(232,197,108,.24); border-radius:999px;
+      background:rgba(37,7,12,.46); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    }
+    .language-mini button { border:0; border-radius:999px; padding:7px 10px; color:#f7e7ba; background:transparent; cursor:pointer; font-size:11px; letter-spacing:.08em; }
+    .language-mini button.active { background:var(--gold-bright); color:var(--maroon-deep); }
+    .nav-dots { margin-left:auto; }
+
+    .scene { min-height:100svh; }
+    .scene-card { width:min(820px,72vw); }
+    .hero-card { background:rgba(48,7,14,.36); border-color:rgba(232,197,108,.23); }
+    .chaideep {
+      margin:0; font-size:clamp(72px,12vw,150px); line-height:.88; font-weight:400;
+      color:var(--gold-bright); letter-spacing:-.055em; font-style:italic;
+      text-shadow:0 7px 30px rgba(0,0,0,.38), 0 0 1px #fff0bd;
+    }
+    .hero-sub { margin:20px auto 28px; max-width:460px; color:#eed9a8; font-size:clamp(15px,1.8vw,20px); line-height:1.6; }
+    .language-choice { display:flex; justify-content:center; flex-wrap:wrap; gap:14px; margin-top:24px; }
+    .language-choice button {
+      min-width:132px; min-height:54px; border:1px solid rgba(232,197,108,.72); border-radius:6px;
+      color:var(--gold-bright); background:rgba(39,4,10,.52); cursor:pointer; font-weight:600;
+      letter-spacing:.14em; padding:14px 24px; transition:.25s ease;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+    }
+    .language-choice button:hover,.language-choice button:focus-visible { background:var(--gold-bright); color:var(--maroon-deep); transform:translateY(-2px); }
+    .language-choice .telugu-choice { letter-spacing:.04em; font-family:'Noto Serif Telugu','Nirmala UI',serif; font-size:17px; }
+    .hero-ornament { color:var(--gold-bright); font-size:18px; letter-spacing:.4em; opacity:.72; margin-top:32px; }
+
+    .auspicious-row {
+      display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; align-items:start;
+      margin:-8px 0 25px; color:var(--gold-bright); font-size:clamp(12px,1.3vw,15px);
+      letter-spacing:.08em; text-transform:uppercase;
+    }
+    .auspicious-row span:first-child { text-align:left; }
+    .auspicious-row span:nth-child(2) { text-align:center; }
+    .auspicious-row span:last-child { text-align:right; }
+    .ganesha-title { margin:0 0 14px; color:var(--gold-bright); font-size:clamp(28px,4.6vw,54px); font-weight:400; letter-spacing:.03em; }
+    .invite-message { margin:0 auto 30px; max-width:620px; color:#f7e8c2; font-size:clamp(16px,1.7vw,20px); line-height:1.65; }
+    .couple-block { display:grid; grid-template-columns:1fr auto 1fr; gap:22px; align-items:center; margin-top:28px; }
+    .person-name { margin:0; color:var(--gold-bright); font-size:clamp(31px,4.3vw,52px); line-height:1.05; font-weight:400; font-style:italic; }
+    .parent-line { margin:13px 0 0; color:#f4e2ba; font-size:clamp(14px,1.35vw,17px); line-height:1.65; }
+    .heart-with {
+      width:72px; height:65px; display:grid; place-items:center; position:relative; color:var(--maroon-deep);
+      font-size:13px; font-style:italic; z-index:1;
+    }
+    .heart-with::before { content:'♥'; position:absolute; inset:0; display:grid; place-items:center; font-size:72px; line-height:1; color:var(--gold-bright); z-index:-1; filter:drop-shadow(0 5px 10px rgba(0,0,0,.25)); }
+
+    .reveal-card { overflow:visible; }
+    .scratch-wrap { position:relative; width:min(570px,100%); min-height:330px; margin:28px auto 0; border-radius:24px; }
+    .date-reveal {
+      min-height:330px; padding:30px 24px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+      border-radius:24px; border:1px solid rgba(232,197,108,.45);
+      background:radial-gradient(circle at 50% 30%,rgba(232,197,108,.13),transparent 48%),rgba(34,4,10,.72);
+      box-shadow:inset 0 0 45px rgba(0,0,0,.25);
+    }
+    .date-reveal .save-date { color:#f4ddb0; letter-spacing:.2em; text-transform:uppercase; font-size:12px; }
+    .revealed-date { margin:12px 0 5px; color:var(--gold-bright); font-size:clamp(32px,5.3vw,59px); font-weight:400; }
+    .revealed-time { margin:0 0 10px; color:#fff0c9; font-size:20px; }
+    .revealed-venue { margin:15px 0 0; color:#f4dfae; line-height:1.55; font-size:15px; }
+    #scratchCanvas { position:absolute; inset:0; width:100%; height:100%; border-radius:24px; touch-action:none; cursor:crosshair; transition:opacity .45s ease; }
+    #scratchCanvas.revealed { opacity:0; pointer-events:none; }
+    .scratch-hint { margin:12px 0 0; color:#e7cc91; font-size:12px; letter-spacing:.08em; }
+    .countdown { display:grid; grid-template-columns:repeat(4,1fr); gap:9px; margin:24px auto 0; max-width:570px; }
+    .countdown-box { padding:15px 8px 12px; border:1px solid rgba(232,197,108,.24); border-radius:12px; background:rgba(40,5,11,.42); }
+    .countdown-box strong { display:block; color:var(--gold-bright); font-size:clamp(26px,4vw,42px); font-weight:400; font-variant-numeric:tabular-nums; }
+    .countdown-box span { display:block; margin-top:5px; color:#e7d19f; font-size:10px; text-transform:uppercase; letter-spacing:.12em; }
+    .venue-line { margin:20px 0 0; color:#f4dfae; line-height:1.65; }
+    .venue-line strong { color:var(--gold-bright); font-weight:500; }
+    #confettiCanvas { position:fixed; inset:0; width:100%; height:100%; z-index:80; pointer-events:none; display:none; }
+
+    .festivity-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin-top:28px; }
+    .festivity-card { border:1px solid rgba(232,197,108,.25); border-radius:18px; background:rgba(37,4,10,.48); overflow:hidden; text-align:left; }
+    .festivity-card button { width:100%; border:0; color:inherit; background:transparent; padding:22px 18px; text-align:left; cursor:pointer; }
+    .festivity-card .event-index { display:block; color:#caa35a; font-size:11px; letter-spacing:.16em; margin-bottom:9px; }
+    .festivity-card h3 { margin:0; color:var(--gold-bright); font-size:21px; font-weight:400; }
+    .festivity-card .event-sub { display:block; margin-top:8px; color:#efdcb0; font-size:13px; line-height:1.45; }
+    .festivity-details { max-height:0; overflow:hidden; transition:max-height .4s ease; border-top:1px solid transparent; }
+    .festivity-card.open .festivity-details { max-height:180px; border-top-color:rgba(232,197,108,.16); }
+    .festivity-details p { margin:0; padding:15px 18px 19px; color:#ead5a9; font-size:14px; line-height:1.55; }
+
+    .rsvp-flow { max-width:520px; margin:27px auto 0; }
+    .rsvp-step { display:none; }
+    .rsvp-step.active { display:block; animation:rsvpIn .35s ease both; }
+    @keyframes rsvpIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+    .field-label { display:block; text-align:left; color:#efd7a4; font-size:13px; margin-bottom:8px; }
+    .rsvp-input { width:100%; min-height:52px; border-radius:10px; border:1px solid rgba(232,197,108,.42); background:rgba(31,3,8,.56); color:#fff0c9; padding:13px 15px; outline:none; font:inherit; font-size:16px; }
+    .rsvp-input:focus { border-color:var(--gold-bright); box-shadow:0 0 0 3px rgba(232,197,108,.10); }
+    .choice-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .choice-btn,.next-btn,.restart-btn { min-height:50px; border:1px solid rgba(232,197,108,.55); border-radius:10px; background:rgba(232,197,108,.07); color:var(--gold-bright); cursor:pointer; padding:12px 16px; }
+    .choice-btn:hover,.choice-btn:focus-visible,.next-btn:hover,.next-btn:focus-visible { background:var(--gold-bright); color:var(--maroon-deep); }
+    .next-btn { margin-top:14px; width:100%; font-weight:600; }
+    .rsvp-question { margin:0 0 17px; color:#f7e9c6; font-size:19px; line-height:1.5; }
+    .rsvp-error { min-height:20px; margin:8px 0 0; color:#ffceb7; font-size:12px; }
+    .rsvp-result { padding:24px 18px; border:1px solid rgba(232,197,108,.28); border-radius:18px; background:rgba(39,4,10,.50); }
+    .rsvp-result .result-heart { font-size:28px; color:var(--gold-bright); }
+    .rsvp-result h3 { color:var(--gold-bright); font-size:28px; font-weight:400; margin:8px 0 12px; }
+    .rsvp-result p { color:#f4e2bb; line-height:1.65; margin:0; }
+    .restart-btn { margin-top:18px; border-color:rgba(232,197,108,.3); font-size:12px; }
+    .privacy-note { margin:14px auto 0; max-width:520px; color:#bfae87; font-size:11px; line-height:1.5; }
+
+    /* Richer original colored Kuchipudi-inspired figures */
+    .side-dancer { width:clamp(120px,15vw,235px); opacity:.82; }
+    .side-dancer .skin { fill:#8f542f; }
+    .side-dancer .hair { fill:#24130d; }
+    .side-dancer .costume-orange { fill:#d96c25; }
+    .side-dancer .costume-green { fill:#67823d; }
+    .side-dancer .jewel { fill:#e8c56c; stroke:#73471e; stroke-width:1.2; }
+    .side-dancer .line { fill:none; stroke:#6f3f1b; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .side-dancer .flower { fill:#f4e9c6; stroke:#c99738; stroke-width:.7; }
+
+    @media (max-width:900px) {
+      .scene-card { width:min(800px,80vw); }
+      .couple-block { grid-template-columns:1fr; gap:18px; }
+      .heart-with { margin:0 auto; }
+      .festivity-grid { grid-template-columns:1fr; }
+      .festivity-card button { text-align:center; }
+    }
+    @media (max-width:720px) {
+      .site-header .monogram { display:none; }
+      .site-header { justify-content:flex-end; }
+      .nav-dots { order:2; }
+      .language-mini { order:1; }
+      .scene-card { width:94vw; }
+      .auspicious-row { gap:5px; font-size:10px; }
+      .scratch-wrap,.date-reveal { min-height:305px; }
+      .countdown { gap:6px; }
+      .countdown-box { padding:12px 5px 10px; }
+      .side-dancer { opacity:.34; }
+    }
+    @media (max-width:440px) {
+      .chaideep { font-size:clamp(63px,23vw,92px); }
+      .language-choice button { min-width:118px; }
+      .scene-card { padding:28px 18px; }
+      .auspicious-row { margin-top:0; }
+      .countdown-box strong { font-size:25px; }
+      .choice-row { gap:9px; }
+    }
+
+  </style>
 </head>
 <body>
-  <div class="cinematic-bg" aria-hidden="true">
-    <div class="grain"></div>
-    <div class="chakra-wrap">
-      <svg class="chakra" viewBox="0 0 600 600" role="img" aria-label="Amaravathi-inspired Kamala Chakra motif">
+  <div class="heritage-stage" aria-hidden="true">
+    <div class="temple-frame">
+      <svg viewBox="0 0 1200 800" preserveAspectRatio="none">
         <defs>
-          <filter id="stoneShadow" x="-30%" y="-30%" width="160%" height="160%">
-            <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#1f0609" flood-opacity=".22"/>
-          </filter>
-          <radialGradient id="stoneGold" cx="42%" cy="35%" r="70%">
-            <stop offset="0" stop-color="#E0B75F"/>
-            <stop offset=".58" stop-color="#C99738"/>
-            <stop offset="1" stop-color="#9E6F27"/>
-          </radialGradient>
-          <path id="petalLong" d="M300 70 C273 120 276 171 300 232 C324 171 327 120 300 70Z"/>
-          <path id="petalMid" d="M300 142 C279 174 282 212 300 250 C318 212 321 174 300 142Z"/>
-          <circle id="bead" cx="300" cy="40" r="6"/>
+          <linearGradient id="frameGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8C56C"/><stop offset="1" stop-color="#9a6522"/></linearGradient>
         </defs>
-        <g filter="url(#stoneShadow)" fill="url(#stoneGold)" stroke="#F0D58F" stroke-opacity=".24" stroke-width="1.5">
-          <circle cx="300" cy="300" r="270" fill="none" stroke="#C99738" stroke-width="16" opacity=".8"/>
-          <g opacity=".78">
-            <use href="#bead"/><use href="#bead" transform="rotate(10 300 300)"/><use href="#bead" transform="rotate(20 300 300)"/><use href="#bead" transform="rotate(30 300 300)"/><use href="#bead" transform="rotate(40 300 300)"/><use href="#bead" transform="rotate(50 300 300)"/><use href="#bead" transform="rotate(60 300 300)"/><use href="#bead" transform="rotate(70 300 300)"/><use href="#bead" transform="rotate(80 300 300)"/><use href="#bead" transform="rotate(90 300 300)"/><use href="#bead" transform="rotate(100 300 300)"/><use href="#bead" transform="rotate(110 300 300)"/><use href="#bead" transform="rotate(120 300 300)"/><use href="#bead" transform="rotate(130 300 300)"/><use href="#bead" transform="rotate(140 300 300)"/><use href="#bead" transform="rotate(150 300 300)"/><use href="#bead" transform="rotate(160 300 300)"/><use href="#bead" transform="rotate(170 300 300)"/><use href="#bead" transform="rotate(180 300 300)"/><use href="#bead" transform="rotate(190 300 300)"/><use href="#bead" transform="rotate(200 300 300)"/><use href="#bead" transform="rotate(210 300 300)"/><use href="#bead" transform="rotate(220 300 300)"/><use href="#bead" transform="rotate(230 300 300)"/><use href="#bead" transform="rotate(240 300 300)"/><use href="#bead" transform="rotate(250 300 300)"/><use href="#bead" transform="rotate(260 300 300)"/><use href="#bead" transform="rotate(270 300 300)"/><use href="#bead" transform="rotate(280 300 300)"/><use href="#bead" transform="rotate(290 300 300)"/><use href="#bead" transform="rotate(300 300 300)"/><use href="#bead" transform="rotate(310 300 300)"/><use href="#bead" transform="rotate(320 300 300)"/><use href="#bead" transform="rotate(330 300 300)"/><use href="#bead" transform="rotate(340 300 300)"/><use href="#bead" transform="rotate(350 300 300)"/>
-          </g>
-          <g opacity=".62">
-            <use href="#petalLong"/><use href="#petalLong" transform="rotate(22.5 300 300)"/><use href="#petalLong" transform="rotate(45 300 300)"/><use href="#petalLong" transform="rotate(67.5 300 300)"/><use href="#petalLong" transform="rotate(90 300 300)"/><use href="#petalLong" transform="rotate(112.5 300 300)"/><use href="#petalLong" transform="rotate(135 300 300)"/><use href="#petalLong" transform="rotate(157.5 300 300)"/><use href="#petalLong" transform="rotate(180 300 300)"/><use href="#petalLong" transform="rotate(202.5 300 300)"/><use href="#petalLong" transform="rotate(225 300 300)"/><use href="#petalLong" transform="rotate(247.5 300 300)"/><use href="#petalLong" transform="rotate(270 300 300)"/><use href="#petalLong" transform="rotate(292.5 300 300)"/><use href="#petalLong" transform="rotate(315 300 300)"/><use href="#petalLong" transform="rotate(337.5 300 300)"/>
-          </g>
-          <g opacity=".78">
-            <use href="#petalMid"/><use href="#petalMid" transform="rotate(30 300 300)"/><use href="#petalMid" transform="rotate(60 300 300)"/><use href="#petalMid" transform="rotate(90 300 300)"/><use href="#petalMid" transform="rotate(120 300 300)"/><use href="#petalMid" transform="rotate(150 300 300)"/><use href="#petalMid" transform="rotate(180 300 300)"/><use href="#petalMid" transform="rotate(210 300 300)"/><use href="#petalMid" transform="rotate(240 300 300)"/><use href="#petalMid" transform="rotate(270 300 300)"/><use href="#petalMid" transform="rotate(300 300 300)"/><use href="#petalMid" transform="rotate(330 300 300)"/>
-          </g>
-          <circle cx="300" cy="300" r="86" opacity=".82"/>
-          <circle cx="300" cy="300" r="42" fill="#DDB158"/>
-          <circle cx="300" cy="300" r="22" fill="#F1D58D" opacity=".72"/>
+        <path d="M40 780V170c0-52 42-94 94-94h188c57 0 105-26 143-70L600 0l135 6c38 44 86 70 143 70h188c52 0 94 42 94 94v610" fill="none" stroke="url(#frameGold)" stroke-width="4" opacity=".22"/>
+        <path d="M66 780V190c0-44 36-80 80-80h185c59 0 111-25 153-74L600 18l116 18c42 49 94 74 153 74h185c44 0 80 36 80 80v590" fill="none" stroke="#E8C56C" stroke-width="1.5" opacity=".13"/>
+        <g fill="#E8C56C" opacity=".20">
+          <circle cx="600" cy="46" r="7"/><circle cx="566" cy="56" r="4"/><circle cx="634" cy="56" r="4"/>
         </g>
       </svg>
     </div>
-    <div class="corner corner-left" aria-hidden="true">
-      <svg viewBox="0 0 240 360">
-        <g fill="none" stroke="currentColor" stroke-width="4">
-          <path d="M48 330h144M58 305h124M67 278h106M76 251h88M85 223h70"/>
-          <path d="M64 305l18-27h76l18 27M73 278l16-27h62l16 27M82 251l14-28h48l14 28M92 223l12-26h32l12 26M108 197l12-42 12 42"/>
-          <path d="M113 155h14M116 142h8M120 128v14"/>
-          <path d="M91 330v-25M149 330v-25M100 305v-27M140 305v-27M108 278v-27M132 278v-27"/>
+
+    <div class="chakra-shell">
+      <svg viewBox="0 0 600 600" role="presentation">
+        <defs>
+          <radialGradient id="chakraGold" cx="39%" cy="32%" r="76%">
+            <stop offset="0" stop-color="#F6D57C"/>
+            <stop offset=".34" stop-color="#D9A647"/>
+            <stop offset=".73" stop-color="#B27629"/>
+            <stop offset="1" stop-color="#714319"/>
+          </radialGradient>
+          <linearGradient id="ridgeGold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#F4D47F"/>
+            <stop offset=".42" stop-color="#B77D2D"/>
+            <stop offset="1" stop-color="#6D4118"/>
+          </linearGradient>
+          <filter id="stoneRelief" x="-25%" y="-25%" width="150%" height="150%">
+            <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="8" result="noise"/>
+            <feColorMatrix in="noise" type="saturate" values="0" result="mono"/>
+            <feComponentTransfer in="mono" result="softNoise"><feFuncA type="table" tableValues="0 .09"/></feComponentTransfer>
+            <feBlend in="SourceGraphic" in2="softNoise" mode="multiply" result="textured"/>
+            <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#2b0a08" flood-opacity=".45"/>
+          </filter>
+          <filter id="innerShadow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#32100b" flood-opacity=".55"/>
+          </filter>
+          <path id="petalOuter" d="M300 26 C279 52 276 102 286 143 C290 162 295 177 300 188 C305 177 310 162 314 143 C324 102 321 52 300 26 Z"/>
+          <path id="petalMid" d="M300 82 C283 106 282 142 289 177 C292 193 296 207 300 218 C304 207 308 193 311 177 C318 142 317 106 300 82 Z"/>
+          <path id="petalInner" d="M300 139 C286 159 287 185 291 211 C294 225 297 237 300 246 C303 237 306 225 309 211 C313 185 314 159 300 139 Z"/>
+          <path id="petalCore" d="M300 195 C290 207 290 226 294 244 C296 254 298 264 300 270 C302 264 304 254 306 244 C310 226 310 207 300 195 Z"/>
+          <circle id="beadOuter" cx="300" cy="14" r="4.1"/>
+          <circle id="beadMid" cx="300" cy="98" r="3.2"/>
+          <circle id="beadInner" cx="300" cy="185" r="2.8"/>
+        </defs>
+        <g filter="url(#stoneRelief)" fill="url(#chakraGold)" stroke="#5d3515" stroke-width="1.25" stroke-linejoin="round">
+          <circle cx="300" cy="300" r="291" fill="none" stroke="url(#ridgeGold)" stroke-width="13"/>
+          <circle cx="300" cy="300" r="281" fill="none" stroke="#E8C56C" stroke-width="2.2" opacity=".75"/>
+          <g fill="#C98B38" stroke="#74461b" stroke-width=".6"><use href="#beadOuter" transform="rotate(0.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(5.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(10.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(15.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(20.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(25.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(30.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(35.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(40.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(45.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(50.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(55.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(60.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(65.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(70.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(75.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(80.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(85.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(90.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(95.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(100.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(105.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(110.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(115.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(120.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(125.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(130.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(135.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(140.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(145.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(150.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(155.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(160.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(165.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(170.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(175.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(180.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(185.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(190.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(195.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(200.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(205.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(210.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(215.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(220.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(225.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(230.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(235.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(240.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(245.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(250.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(255.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(260.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(265.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(270.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(275.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(280.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(285.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(290.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(295.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(300.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(305.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(310.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(315.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(320.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(325.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(330.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(335.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(340.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(345.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(350.000000 300 300)" />
+<use href="#beadOuter" transform="rotate(355.000000 300 300)" /></g>
+          <circle cx="300" cy="300" r="264" fill="none" stroke="#7b471b" stroke-width="3"/>
+          <g><use href="#petalOuter" transform="rotate(0.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(9.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(18.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(27.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(36.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(45.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(54.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(63.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(72.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(81.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(90.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(99.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(108.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(117.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(126.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(135.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(144.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(153.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(162.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(171.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(180.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(189.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(198.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(207.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(216.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(225.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(234.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(243.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(252.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(261.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(270.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(279.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(288.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(297.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(306.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(315.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(324.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(333.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(342.000000 300 300)" />
+<use href="#petalOuter" transform="rotate(351.000000 300 300)" /></g>
+          <circle cx="300" cy="300" r="221" fill="none" stroke="url(#ridgeGold)" stroke-width="7"/>
+          <g fill="#D6A044" stroke-width="1"><use href="#beadMid" transform="rotate(2.812500 300 300)" />
+<use href="#beadMid" transform="rotate(8.437500 300 300)" />
+<use href="#beadMid" transform="rotate(14.062500 300 300)" />
+<use href="#beadMid" transform="rotate(19.687500 300 300)" />
+<use href="#beadMid" transform="rotate(25.312500 300 300)" />
+<use href="#beadMid" transform="rotate(30.937500 300 300)" />
+<use href="#beadMid" transform="rotate(36.562500 300 300)" />
+<use href="#beadMid" transform="rotate(42.187500 300 300)" />
+<use href="#beadMid" transform="rotate(47.812500 300 300)" />
+<use href="#beadMid" transform="rotate(53.437500 300 300)" />
+<use href="#beadMid" transform="rotate(59.062500 300 300)" />
+<use href="#beadMid" transform="rotate(64.687500 300 300)" />
+<use href="#beadMid" transform="rotate(70.312500 300 300)" />
+<use href="#beadMid" transform="rotate(75.937500 300 300)" />
+<use href="#beadMid" transform="rotate(81.562500 300 300)" />
+<use href="#beadMid" transform="rotate(87.187500 300 300)" />
+<use href="#beadMid" transform="rotate(92.812500 300 300)" />
+<use href="#beadMid" transform="rotate(98.437500 300 300)" />
+<use href="#beadMid" transform="rotate(104.062500 300 300)" />
+<use href="#beadMid" transform="rotate(109.687500 300 300)" />
+<use href="#beadMid" transform="rotate(115.312500 300 300)" />
+<use href="#beadMid" transform="rotate(120.937500 300 300)" />
+<use href="#beadMid" transform="rotate(126.562500 300 300)" />
+<use href="#beadMid" transform="rotate(132.187500 300 300)" />
+<use href="#beadMid" transform="rotate(137.812500 300 300)" />
+<use href="#beadMid" transform="rotate(143.437500 300 300)" />
+<use href="#beadMid" transform="rotate(149.062500 300 300)" />
+<use href="#beadMid" transform="rotate(154.687500 300 300)" />
+<use href="#beadMid" transform="rotate(160.312500 300 300)" />
+<use href="#beadMid" transform="rotate(165.937500 300 300)" />
+<use href="#beadMid" transform="rotate(171.562500 300 300)" />
+<use href="#beadMid" transform="rotate(177.187500 300 300)" />
+<use href="#beadMid" transform="rotate(182.812500 300 300)" />
+<use href="#beadMid" transform="rotate(188.437500 300 300)" />
+<use href="#beadMid" transform="rotate(194.062500 300 300)" />
+<use href="#beadMid" transform="rotate(199.687500 300 300)" />
+<use href="#beadMid" transform="rotate(205.312500 300 300)" />
+<use href="#beadMid" transform="rotate(210.937500 300 300)" />
+<use href="#beadMid" transform="rotate(216.562500 300 300)" />
+<use href="#beadMid" transform="rotate(222.187500 300 300)" />
+<use href="#beadMid" transform="rotate(227.812500 300 300)" />
+<use href="#beadMid" transform="rotate(233.437500 300 300)" />
+<use href="#beadMid" transform="rotate(239.062500 300 300)" />
+<use href="#beadMid" transform="rotate(244.687500 300 300)" />
+<use href="#beadMid" transform="rotate(250.312500 300 300)" />
+<use href="#beadMid" transform="rotate(255.937500 300 300)" />
+<use href="#beadMid" transform="rotate(261.562500 300 300)" />
+<use href="#beadMid" transform="rotate(267.187500 300 300)" />
+<use href="#beadMid" transform="rotate(272.812500 300 300)" />
+<use href="#beadMid" transform="rotate(278.437500 300 300)" />
+<use href="#beadMid" transform="rotate(284.062500 300 300)" />
+<use href="#beadMid" transform="rotate(289.687500 300 300)" />
+<use href="#beadMid" transform="rotate(295.312500 300 300)" />
+<use href="#beadMid" transform="rotate(300.937500 300 300)" />
+<use href="#beadMid" transform="rotate(306.562500 300 300)" />
+<use href="#beadMid" transform="rotate(312.187500 300 300)" />
+<use href="#beadMid" transform="rotate(317.812500 300 300)" />
+<use href="#beadMid" transform="rotate(323.437500 300 300)" />
+<use href="#beadMid" transform="rotate(329.062500 300 300)" />
+<use href="#beadMid" transform="rotate(334.687500 300 300)" />
+<use href="#beadMid" transform="rotate(340.312500 300 300)" />
+<use href="#beadMid" transform="rotate(345.937500 300 300)" />
+<use href="#beadMid" transform="rotate(351.562500 300 300)" />
+<use href="#beadMid" transform="rotate(357.187500 300 300)" /></g>
+          <g opacity=".96"><use href="#petalMid" transform="rotate(5.625000 300 300)" />
+<use href="#petalMid" transform="rotate(16.875000 300 300)" />
+<use href="#petalMid" transform="rotate(28.125000 300 300)" />
+<use href="#petalMid" transform="rotate(39.375000 300 300)" />
+<use href="#petalMid" transform="rotate(50.625000 300 300)" />
+<use href="#petalMid" transform="rotate(61.875000 300 300)" />
+<use href="#petalMid" transform="rotate(73.125000 300 300)" />
+<use href="#petalMid" transform="rotate(84.375000 300 300)" />
+<use href="#petalMid" transform="rotate(95.625000 300 300)" />
+<use href="#petalMid" transform="rotate(106.875000 300 300)" />
+<use href="#petalMid" transform="rotate(118.125000 300 300)" />
+<use href="#petalMid" transform="rotate(129.375000 300 300)" />
+<use href="#petalMid" transform="rotate(140.625000 300 300)" />
+<use href="#petalMid" transform="rotate(151.875000 300 300)" />
+<use href="#petalMid" transform="rotate(163.125000 300 300)" />
+<use href="#petalMid" transform="rotate(174.375000 300 300)" />
+<use href="#petalMid" transform="rotate(185.625000 300 300)" />
+<use href="#petalMid" transform="rotate(196.875000 300 300)" />
+<use href="#petalMid" transform="rotate(208.125000 300 300)" />
+<use href="#petalMid" transform="rotate(219.375000 300 300)" />
+<use href="#petalMid" transform="rotate(230.625000 300 300)" />
+<use href="#petalMid" transform="rotate(241.875000 300 300)" />
+<use href="#petalMid" transform="rotate(253.125000 300 300)" />
+<use href="#petalMid" transform="rotate(264.375000 300 300)" />
+<use href="#petalMid" transform="rotate(275.625000 300 300)" />
+<use href="#petalMid" transform="rotate(286.875000 300 300)" />
+<use href="#petalMid" transform="rotate(298.125000 300 300)" />
+<use href="#petalMid" transform="rotate(309.375000 300 300)" />
+<use href="#petalMid" transform="rotate(320.625000 300 300)" />
+<use href="#petalMid" transform="rotate(331.875000 300 300)" />
+<use href="#petalMid" transform="rotate(343.125000 300 300)" />
+<use href="#petalMid" transform="rotate(354.375000 300 300)" /></g>
+          <circle cx="300" cy="300" r="176" fill="none" stroke="#704117" stroke-width="4"/>
+          <g fill="#D7A548"><use href="#beadInner" transform="rotate(0.000000 300 300)" />
+<use href="#beadInner" transform="rotate(7.500000 300 300)" />
+<use href="#beadInner" transform="rotate(15.000000 300 300)" />
+<use href="#beadInner" transform="rotate(22.500000 300 300)" />
+<use href="#beadInner" transform="rotate(30.000000 300 300)" />
+<use href="#beadInner" transform="rotate(37.500000 300 300)" />
+<use href="#beadInner" transform="rotate(45.000000 300 300)" />
+<use href="#beadInner" transform="rotate(52.500000 300 300)" />
+<use href="#beadInner" transform="rotate(60.000000 300 300)" />
+<use href="#beadInner" transform="rotate(67.500000 300 300)" />
+<use href="#beadInner" transform="rotate(75.000000 300 300)" />
+<use href="#beadInner" transform="rotate(82.500000 300 300)" />
+<use href="#beadInner" transform="rotate(90.000000 300 300)" />
+<use href="#beadInner" transform="rotate(97.500000 300 300)" />
+<use href="#beadInner" transform="rotate(105.000000 300 300)" />
+<use href="#beadInner" transform="rotate(112.500000 300 300)" />
+<use href="#beadInner" transform="rotate(120.000000 300 300)" />
+<use href="#beadInner" transform="rotate(127.500000 300 300)" />
+<use href="#beadInner" transform="rotate(135.000000 300 300)" />
+<use href="#beadInner" transform="rotate(142.500000 300 300)" />
+<use href="#beadInner" transform="rotate(150.000000 300 300)" />
+<use href="#beadInner" transform="rotate(157.500000 300 300)" />
+<use href="#beadInner" transform="rotate(165.000000 300 300)" />
+<use href="#beadInner" transform="rotate(172.500000 300 300)" />
+<use href="#beadInner" transform="rotate(180.000000 300 300)" />
+<use href="#beadInner" transform="rotate(187.500000 300 300)" />
+<use href="#beadInner" transform="rotate(195.000000 300 300)" />
+<use href="#beadInner" transform="rotate(202.500000 300 300)" />
+<use href="#beadInner" transform="rotate(210.000000 300 300)" />
+<use href="#beadInner" transform="rotate(217.500000 300 300)" />
+<use href="#beadInner" transform="rotate(225.000000 300 300)" />
+<use href="#beadInner" transform="rotate(232.500000 300 300)" />
+<use href="#beadInner" transform="rotate(240.000000 300 300)" />
+<use href="#beadInner" transform="rotate(247.500000 300 300)" />
+<use href="#beadInner" transform="rotate(255.000000 300 300)" />
+<use href="#beadInner" transform="rotate(262.500000 300 300)" />
+<use href="#beadInner" transform="rotate(270.000000 300 300)" />
+<use href="#beadInner" transform="rotate(277.500000 300 300)" />
+<use href="#beadInner" transform="rotate(285.000000 300 300)" />
+<use href="#beadInner" transform="rotate(292.500000 300 300)" />
+<use href="#beadInner" transform="rotate(300.000000 300 300)" />
+<use href="#beadInner" transform="rotate(307.500000 300 300)" />
+<use href="#beadInner" transform="rotate(315.000000 300 300)" />
+<use href="#beadInner" transform="rotate(322.500000 300 300)" />
+<use href="#beadInner" transform="rotate(330.000000 300 300)" />
+<use href="#beadInner" transform="rotate(337.500000 300 300)" />
+<use href="#beadInner" transform="rotate(345.000000 300 300)" />
+<use href="#beadInner" transform="rotate(352.500000 300 300)" /></g>
+          <g opacity=".98"><use href="#petalInner" transform="rotate(0.000000 300 300)" />
+<use href="#petalInner" transform="rotate(12.857143 300 300)" />
+<use href="#petalInner" transform="rotate(25.714286 300 300)" />
+<use href="#petalInner" transform="rotate(38.571429 300 300)" />
+<use href="#petalInner" transform="rotate(51.428571 300 300)" />
+<use href="#petalInner" transform="rotate(64.285714 300 300)" />
+<use href="#petalInner" transform="rotate(77.142857 300 300)" />
+<use href="#petalInner" transform="rotate(90.000000 300 300)" />
+<use href="#petalInner" transform="rotate(102.857143 300 300)" />
+<use href="#petalInner" transform="rotate(115.714286 300 300)" />
+<use href="#petalInner" transform="rotate(128.571429 300 300)" />
+<use href="#petalInner" transform="rotate(141.428571 300 300)" />
+<use href="#petalInner" transform="rotate(154.285714 300 300)" />
+<use href="#petalInner" transform="rotate(167.142857 300 300)" />
+<use href="#petalInner" transform="rotate(180.000000 300 300)" />
+<use href="#petalInner" transform="rotate(192.857143 300 300)" />
+<use href="#petalInner" transform="rotate(205.714286 300 300)" />
+<use href="#petalInner" transform="rotate(218.571429 300 300)" />
+<use href="#petalInner" transform="rotate(231.428571 300 300)" />
+<use href="#petalInner" transform="rotate(244.285714 300 300)" />
+<use href="#petalInner" transform="rotate(257.142857 300 300)" />
+<use href="#petalInner" transform="rotate(270.000000 300 300)" />
+<use href="#petalInner" transform="rotate(282.857143 300 300)" />
+<use href="#petalInner" transform="rotate(295.714286 300 300)" />
+<use href="#petalInner" transform="rotate(308.571429 300 300)" />
+<use href="#petalInner" transform="rotate(321.428571 300 300)" />
+<use href="#petalInner" transform="rotate(334.285714 300 300)" />
+<use href="#petalInner" transform="rotate(347.142857 300 300)" /></g>
+          <circle cx="300" cy="300" r="126" fill="none" stroke="url(#ridgeGold)" stroke-width="7"/>
+          <g><use href="#petalCore" transform="rotate(7.500000 300 300)" />
+<use href="#petalCore" transform="rotate(22.500000 300 300)" />
+<use href="#petalCore" transform="rotate(37.500000 300 300)" />
+<use href="#petalCore" transform="rotate(52.500000 300 300)" />
+<use href="#petalCore" transform="rotate(67.500000 300 300)" />
+<use href="#petalCore" transform="rotate(82.500000 300 300)" />
+<use href="#petalCore" transform="rotate(97.500000 300 300)" />
+<use href="#petalCore" transform="rotate(112.500000 300 300)" />
+<use href="#petalCore" transform="rotate(127.500000 300 300)" />
+<use href="#petalCore" transform="rotate(142.500000 300 300)" />
+<use href="#petalCore" transform="rotate(157.500000 300 300)" />
+<use href="#petalCore" transform="rotate(172.500000 300 300)" />
+<use href="#petalCore" transform="rotate(187.500000 300 300)" />
+<use href="#petalCore" transform="rotate(202.500000 300 300)" />
+<use href="#petalCore" transform="rotate(217.500000 300 300)" />
+<use href="#petalCore" transform="rotate(232.500000 300 300)" />
+<use href="#petalCore" transform="rotate(247.500000 300 300)" />
+<use href="#petalCore" transform="rotate(262.500000 300 300)" />
+<use href="#petalCore" transform="rotate(277.500000 300 300)" />
+<use href="#petalCore" transform="rotate(292.500000 300 300)" />
+<use href="#petalCore" transform="rotate(307.500000 300 300)" />
+<use href="#petalCore" transform="rotate(322.500000 300 300)" />
+<use href="#petalCore" transform="rotate(337.500000 300 300)" />
+<use href="#petalCore" transform="rotate(352.500000 300 300)" /></g>
+          <circle cx="300" cy="300" r="85" fill="url(#ridgeGold)" stroke="#6b3d15" stroke-width="4" filter="url(#innerShadow)"/>
+          <circle cx="300" cy="300" r="65" fill="#DCAA4C" stroke="#7a4718" stroke-width="3"/>
+          <circle cx="300" cy="300" r="49" fill="url(#chakraGold)" stroke="#F0CE76" stroke-width="2"/>
+          <circle cx="300" cy="300" r="36" fill="#D3A049" stroke="#704016" stroke-width="3"/>
+        </g>
+        <g fill="none" stroke="#F6D57C" opacity=".20">
+          <circle cx="300" cy="300" r="250" stroke-width="1"/><circle cx="300" cy="300" r="205" stroke-width="1"/><circle cx="300" cy="300" r="158" stroke-width="1"/>
         </g>
       </svg>
     </div>
-    <div class="corner corner-right" aria-hidden="true">
-      <svg viewBox="0 0 240 360">
-        <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M120 328c-37 0-60-28-51-62l12-46h78l12 46c9 34-14 62-51 62Z"/>
-          <path d="M78 220c13-20 71-20 84 0"/>
-          <path d="M120 220c-4-35 4-67 22-91"/>
-          <path d="M120 220c4-35-4-67-22-91"/>
-          <path d="M102 168c-25-34-21-64 4-82 6 26 9 52 14 82M138 168c25-34 21-64-4-82-6 26-9 52-14 82"/>
-          <path d="M120 134c-21-15-28-34-19-58 21 11 30 31 19 58ZM120 134c21-15 28-34 19-58-21 11-30 31-19 58Z"/>
-          <path d="M92 328h56"/>
+
+    <!-- Original Kuchipudi-inspired side figures: drawn for this site, not copied from references -->
+    <div class="side-dancer left">
+      <svg viewBox="0 0 200 340" role="presentation" aria-hidden="true">
+        <g>
+          <ellipse class="hair" cx="104" cy="50" rx="22" ry="26"/>
+          <circle class="skin" cx="102" cy="52" r="19"/>
+          <path class="hair" d="M84 48c2-25 31-35 45-16-12-6-26-5-39 8z"/>
+          <g class="flower"><circle cx="127" cy="37" r="6"/><circle cx="134" cy="43" r="6"/><circle cx="128" cy="49" r="6"/><circle cx="137" cy="52" r="5"/></g>
+          <circle class="jewel" cx="102" cy="34" r="4"/><path class="jewel" d="M91 69h22l-2 10H93z"/>
+          <path class="skin" d="M96 73c-3 13-3 23 1 31l-12 18 18 8 11-22c5-11 5-23 1-35z"/>
+          <path class="costume-green" d="M83 99c16-11 31-9 43 1l-7 51-36 0z"/>
+          <path class="costume-orange" d="M86 116h36l16 73-54 0z"/>
+          <path class="costume-green" d="M84 173c17 9 36 9 54 0l16 67-30 15-17-40-15 42-30-16z"/>
+          <path class="jewel" d="M84 108h39v7H84z"/><path class="jewel" d="M82 151h43v7H82z"/>
+          <path class="skin" d="M87 101C65 89 48 76 32 57l-10 9c13 23 32 41 61 56z"/>
+          <circle class="skin" cx="27" cy="61" r="7"/>
+          <path class="skin" d="M121 104c25 2 45-5 60-23l-8-11c-15 12-31 18-51 17z"/>
+          <circle class="skin" cx="177" cy="75" r="7"/>
+          <path class="line" d="M21 57l-11-12m17 9l-4-17m9 21l7-15M176 70l8-14m-3 20l13-8m-19 16l15 5"/>
+          <path class="skin" d="M83 185c-18 20-30 42-35 67l15 5c7-18 17-32 31-43z"/>
+          <path class="skin" d="M130 186c18 20 31 39 42 61l14-8c-8-25-20-47-36-67z"/>
+          <path class="jewel" d="M45 250h22v7H45zm122-8h22v7h-22z"/>
+          <path class="skin" d="M48 254c-5 17-3 34 6 51l13-4c-5-16-4-28 3-40z"/>
+          <path class="skin" d="M171 246c9 17 14 33 15 48l-14 3c-4-15-10-28-19-39z"/>
+          <path class="hair" d="M95 72c-13-4-23-13-25-23 8 2 15 7 21 15z"/>
+          <circle cx="95" cy="52" r="2" fill="#21110b"/><circle cx="108" cy="52" r="2" fill="#21110b"/>
+          <path class="line" d="M96 61c5 3 9 3 13 0"/>
+          <circle class="jewel" cx="102" cy="84" r="4"/>
         </g>
       </svg>
     </div>
-    <div class="banana banana-left"></div>
-    <div class="banana banana-right"></div>
+    <div class="side-dancer right">
+      <svg viewBox="0 0 200 340" role="presentation" aria-hidden="true">
+        <g>
+          <ellipse class="hair" cx="104" cy="50" rx="22" ry="26"/>
+          <circle class="skin" cx="102" cy="52" r="19"/>
+          <path class="hair" d="M84 48c2-25 31-35 45-16-12-6-26-5-39 8z"/>
+          <g class="flower"><circle cx="127" cy="37" r="6"/><circle cx="134" cy="43" r="6"/><circle cx="128" cy="49" r="6"/><circle cx="137" cy="52" r="5"/></g>
+          <circle class="jewel" cx="102" cy="34" r="4"/><path class="jewel" d="M91 69h22l-2 10H93z"/>
+          <path class="skin" d="M96 73c-3 13-3 23 1 31l-12 18 18 8 11-22c5-11 5-23 1-35z"/>
+          <path class="costume-orange" d="M83 99c16-11 31-9 43 1l-7 51-36 0z"/>
+          <path class="costume-green" d="M86 116h36l16 73-54 0z"/>
+          <path class="costume-orange" d="M84 173c17 9 36 9 54 0l16 67-30 15-17-40-15 42-30-16z"/>
+          <path class="jewel" d="M84 108h39v7H84z"/><path class="jewel" d="M82 151h43v7H82z"/>
+          <path class="skin" d="M87 101C65 89 48 76 32 57l-10 9c13 23 32 41 61 56z"/>
+          <circle class="skin" cx="27" cy="61" r="7"/>
+          <path class="skin" d="M121 104c25 2 45-5 60-23l-8-11c-15 12-31 18-51 17z"/>
+          <circle class="skin" cx="177" cy="75" r="7"/>
+          <path class="line" d="M21 57l-11-12m17 9l-4-17m9 21l7-15M176 70l8-14m-3 20l13-8m-19 16l15 5"/>
+          <path class="skin" d="M83 185c-18 20-30 42-35 67l15 5c7-18 17-32 31-43z"/>
+          <path class="skin" d="M130 186c18 20 31 39 42 61l14-8c-8-25-20-47-36-67z"/>
+          <path class="jewel" d="M45 250h22v7H45zm122-8h22v7h-22z"/>
+          <path class="skin" d="M48 254c-5 17-3 34 6 51l13-4c-5-16-4-28 3-40z"/>
+          <path class="skin" d="M171 246c9 17 14 33 15 48l-14 3c-4-15-10-28-19-39z"/>
+          <path class="hair" d="M95 72c-13-4-23-13-25-23 8 2 15 7 21 15z"/>
+          <circle cx="95" cy="52" r="2" fill="#21110b"/><circle cx="108" cy="52" r="2" fill="#21110b"/>
+          <path class="line" d="M96 61c5 3 9 3 13 0"/>
+          <circle class="jewel" cx="102" cy="84" r="4"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Original banana and coconut tree illustrations -->
+    <div class="tree banana-left"><svg viewBox="0 0 230 470" role="presentation"><g stroke="#31451e" stroke-width="2" stroke-linejoin="round"><path d="M92 470c10-122 18-240 17-368" stroke="#7d6428" stroke-width="18" fill="none"/><path d="M109 112C82 68 46 48 5 49c26 24 54 43 95 72Z" fill="#6e873f"/><path d="M112 123C76 109 40 114 8 141c38 4 69 0 103-7Z" fill="#80994b"/><path d="M112 100C91 54 93 21 116 0c10 37 11 68 4 101Z" fill="#587431"/><path d="M115 114c35-42 70-56 108-43-31 17-61 35-100 54Z" fill="#6b8740"/><path d="M114 131c41-19 77-18 108 4-34 11-69 14-109 7Z" fill="#7e9949"/><path d="M114 149c34 6 61 26 81 59-34-8-61-24-84-46Z" fill="#597532"/><path d="M105 145C72 151 49 171 35 205c31-11 57-29 76-50Z" fill="#6d8a40"/></g></svg></div>
+    <div class="tree banana-right"><svg viewBox="0 0 230 470" role="presentation"><g stroke="#31451e" stroke-width="2" stroke-linejoin="round"><path d="M92 470c10-122 18-240 17-368" stroke="#7d6428" stroke-width="18" fill="none"/><path d="M109 112C82 68 46 48 5 49c26 24 54 43 95 72Z" fill="#6e873f"/><path d="M112 123C76 109 40 114 8 141c38 4 69 0 103-7Z" fill="#80994b"/><path d="M112 100C91 54 93 21 116 0c10 37 11 68 4 101Z" fill="#587431"/><path d="M115 114c35-42 70-56 108-43-31 17-61 35-100 54Z" fill="#6b8740"/><path d="M114 131c41-19 77-18 108 4-34 11-69 14-109 7Z" fill="#7e9949"/><path d="M114 149c34 6 61 26 81 59-34-8-61-24-84-46Z" fill="#597532"/><path d="M105 145C72 151 49 171 35 205c31-11 57-29 76-50Z" fill="#6d8a40"/></g></svg></div>
+    <div class="tree coconut-left"><svg viewBox="0 0 160 470" role="presentation"><g stroke="#394820" stroke-width="2" stroke-linecap="round"><path d="M83 470c-13-157-3-281 10-370" stroke="#86622d" stroke-width="13" fill="none"/><path d="M91 96C57 55 31 50 3 63c31 11 57 26 82 47Z" fill="#5f7737"/><path d="M92 94C74 49 80 19 107 0c-1 36-5 68-12 98Z" fill="#718a42"/><path d="M94 96c27-37 54-47 66-39-16 18-36 36-62 51Z" fill="#596f32"/><path d="M96 106c32-10 51-3 64 13-25 2-45 0-65-6Z" fill="#718a42"/><circle cx="87" cy="111" r="10" fill="#8b5d2c"/><circle cx="103" cy="110" r="9" fill="#7d5128"/><circle cx="94" cy="123" r="9" fill="#98662e"/></g></svg></div>
+    <div class="tree coconut-right"><svg viewBox="0 0 160 470" role="presentation"><g stroke="#394820" stroke-width="2" stroke-linecap="round"><path d="M83 470c-13-157-3-281 10-370" stroke="#86622d" stroke-width="13" fill="none"/><path d="M91 96C57 55 31 50 3 63c31 11 57 26 82 47Z" fill="#5f7737"/><path d="M92 94C74 49 80 19 107 0c-1 36-5 68-12 98Z" fill="#718a42"/><path d="M94 96c27-37 54-47 66-39-16 18-36 36-62 51Z" fill="#596f32"/><path d="M96 106c32-10 51-3 64 13-25 2-45 0-65-6Z" fill="#718a42"/><circle cx="87" cy="111" r="10" fill="#8b5d2c"/><circle cx="103" cy="110" r="9" fill="#7d5128"/><circle cx="94" cy="123" r="9" fill="#98662e"/></g></svg></div>
   </div>
 
+
+  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
   <header class="site-header">
-    <a class="monogram" href="#welcome" aria-label="Back to top">D<span>&</span>C</a>
-    <nav aria-label="Wedding invitation sections">
-      <a href="#welcome" class="nav-dot active" data-label="Welcome"></a>
-      <a href="#heritage" class="nav-dot" data-label="Heritage"></a>
-      <a href="#events" class="nav-dot" data-label="Events"></a>
-      <a href="#wedding" class="nav-dot" data-label="Wedding"></a>
-      <a href="#rsvp" class="nav-dot" data-label="RSVP"></a>
+    <a class="monogram" href="#welcome" aria-label="Back to top">ChaiDeep</a>
+    <nav class="nav-dots" aria-label="Wedding invitation sections">
+      <a href="#welcome" class="nav-dot active" aria-label="Welcome"></a>
+      <a href="#invitation" class="nav-dot" aria-label="Invitation"></a>
+      <a href="#date" class="nav-dot" aria-label="Wedding date"></a>
+      <a href="#events" class="nav-dot" aria-label="Festivities"></a>
+      <a href="#rsvp" class="nav-dot" aria-label="RSVP"></a>
     </nav>
+    <div class="language-mini" aria-label="Language">
+      <button type="button" data-lang-mini="en" class="active">ENG</button>
+      <button type="button" data-lang-mini="te">తెలుగు</button>
+    </div>
   </header>
 
   <main>
-    <section id="welcome" class="scene scene-hero is-visible" data-scene="1">
-      <div class="temple-arch" aria-hidden="true">
-        <span class="crest crest-1">✦</span><span class="crest crest-2">❁</span><span class="crest crest-3">✦</span>
-        <div class="ganesha-mark">
-          <svg viewBox="0 0 120 100" aria-hidden="true">
-            <path d="M38 44c-16-18-35-5-31 12 4 17 24 19 34 7M82 44c16-18 35-5 31 12-4 17-24 19-34 7M44 28c9-18 23-21 32 0M46 35c-7 15-1 28 14 30 14 2 20-9 14-17-5-7-14-3-13 5 1 9 13 14 20 10"/>
-            <circle cx="51" cy="41" r="2.4"/><circle cx="69" cy="41" r="2.4"/>
-          </svg>
-        </div>
-      </div>
+    <section id="welcome" class="scene is-visible">
       <div class="scene-card hero-card">
-        <p class="eyebrow telugu">శుభమస్తు</p>
-        <p class="kicker">Together with our families</p>
-        <h1><span>Deepthi</span><em>&</em><span>Chaitanya</span></h1>
-        <div class="gold-rule"><i></i><b>❁</b><i></i></div>
-        <p class="intro">invite you to celebrate a wedding woven with love, Telugu tradition, and the timeless heritage of Amaravathi & Kuchipudi.</p>
-        <div class="date-lockup">
-          <span class="date-big">22</span>
-          <div><strong>November</strong><small>2026 · Sunday · 10:30 AM</small></div>
+        <p class="eyebrow" data-i18n="welcomeEyebrow">A Telugu Wedding Story</p>
+        <h1 class="chaideep" data-i18n="heroName">ChaiDeep</h1>
+        <p class="hero-sub" data-i18n="chooseLanguage">Choose your language to enter our celebration.</p>
+        <div class="language-choice" role="group" aria-label="Choose invitation language">
+          <button type="button" data-lang="en">ENG</button>
+          <button type="button" class="telugu-choice" data-lang="te">తెలుగు</button>
         </div>
-        <p class="place">Tampa, Florida</p>
-        <a class="scroll-cue" href="#heritage"><span>Enter the celebration</span><i>↓</i></a>
+        <div class="hero-ornament" aria-hidden="true">✦ ❁ ✦</div>
       </div>
     </section>
 
-    <section id="heritage" class="scene" data-scene="2">
-      <div class="scene-card story-card">
-        <p class="eyebrow">Roots & Rhythm</p>
-        <h2>From Amaravathi<br><span>to Kuchipudi</span></h2>
-        <p class="lead">Two stories, two places, one beginning.</p>
-        <p>Inspired by the sculpted lotus wheel of Amaravathi and the graceful movement of Kuchipudi, this celebration brings Andhra heritage into every detail.</p>
-        <div class="heritage-pair" aria-hidden="true">
-          <div class="mini-seal"><span>అమరావతి</span><small>Amaravathi</small></div>
-          <div class="dance-line">
-            <svg viewBox="0 0 180 180">
-              <circle cx="90" cy="31" r="10"/>
-              <path d="M90 42c-5 25-5 42 0 64m0-38-32-18m32 18 35-17m-35 55-29 37m29-37 31 36m-45-73 22 17 28-17m-50 73h28m17 0h28"/>
-              <path d="M49 51l-19-13M125 51l18-14"/>
-            </svg>
-            <span>కూచిపూడి</span><small>Kuchipudi</small>
+    <section id="invitation" class="scene">
+      <div class="scene-card invitation-card">
+        <div class="auspicious-row">
+          <span data-i18n="sriRasthu">Sri Rasthu</span>
+          <span data-i18n="subhamasthu">Subhamasthu</span>
+          <span data-i18n="avighnamasthu">Avighnamasthu</span>
+        </div>
+        <h2 class="ganesha-title" data-i18n="ganesha">SHREE Ganeshaya Namaha</h2>
+        <p class="invite-message" data-i18n="inviteMessage">With the blessings of our families, we joyfully invite you to celebrate the wedding of</p>
+        <div class="gold-rule"><i></i><b>❁</b><i></i></div>
+        <div class="couple-block">
+          <div class="person bride">
+            <h3 class="person-name" data-i18n="brideName">Jaya Deepthi Gunnam</h3>
+            <p class="parent-line" data-i18n="brideParents">D/O Narendra Reddy Gunnam<br>Vardhini Gunnam</p>
+          </div>
+          <div class="heart-with" data-i18n="with">with</div>
+          <div class="person groom">
+            <h3 class="person-name" data-i18n="groomName">Sri Chaitanya Kaza</h3>
+            <p class="parent-line" data-i18n="groomParents">S/O Venkata Yogeendra Nath Kaza<br>Rama Devi Kaza</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="events" class="scene" data-scene="3">
+    <section id="date" class="scene">
+      <div class="scene-card reveal-card">
+        <p class="eyebrow" data-i18n="dateEyebrow">A Date To Remember</p>
+        <h2 data-i18n="scratchHeading">Scratch & Reveal</h2>
+        <p class="lead" data-i18n="scratchSub">A little surprise is waiting underneath.</p>
+        <div class="scratch-wrap" id="scratchWrap">
+          <div class="date-reveal" aria-live="polite">
+            <span class="save-date" data-i18n="saveDate">Save the Date</span>
+            <h3 class="revealed-date" data-i18n="weddingDate">Sunday, November 22, 2026</h3>
+            <p class="revealed-time" data-i18n="weddingTime">10:32 AM</p>
+            <div class="gold-rule"><i></i><b>✦</b><i></i></div>
+            <p class="revealed-venue"><strong data-i18n="venueName">Hindu Temple of Florida – Temple Hall</strong><br><span data-i18n="venueAddress">5509 Lynn Road, Tampa, FL 33624</span></p>
+          </div>
+          <canvas id="scratchCanvas" aria-label="Scratch area"></canvas>
+        </div>
+        <p class="scratch-hint" id="scratchHint" data-i18n="scratchHint">Scratch with your finger, mouse, or trackpad to reveal the date.</p>
+        <div class="countdown" aria-label="Wedding countdown">
+          <div class="countdown-box"><strong id="countDays">--</strong><span data-i18n="days">Days</span></div>
+          <div class="countdown-box"><strong id="countHours">--</strong><span data-i18n="hours">Hours</span></div>
+          <div class="countdown-box"><strong id="countMinutes">--</strong><span data-i18n="minutes">Minutes</span></div>
+          <div class="countdown-box"><strong id="countSeconds">--</strong><span data-i18n="seconds">Seconds</span></div>
+        </div>
+        <p class="small-note" data-i18n="deviceClock">Countdown is calculated from your device clock to the Tampa wedding time.</p>
+      </div>
+    </section>
+
+    <section id="events" class="scene">
       <div class="scene-card events-card">
-        <p class="eyebrow">Celebrations</p>
-        <h2>Wedding Festivities</h2>
-        <div class="event-grid">
-          <article class="event-item">
-            <span class="event-no">01</span>
-            <p class="event-telugu">పెళ్లికూతురు</p>
-            <h3>Deepthi’s Pellikuthuru</h3>
-            <p>A joyful beginning with turmeric, blessings, flowers, and family.</p>
-            <small>Date & venue can be updated here</small>
+        <p class="eyebrow" data-i18n="festivitiesEyebrow">Celebrations</p>
+        <h2 data-i18n="festivitiesTitle">Wedding Festivities</h2>
+        <div class="festivity-grid">
+          <article class="festivity-card">
+            <button type="button" aria-expanded="false"><span class="event-index">01</span><h3 data-i18n="event1Title">Pellikuthuru / Pelli Koduku</h3><span class="event-sub" data-i18n="event1Sub">A traditional beginning filled with blessings.</span></button>
+            <div class="festivity-details"><p data-i18n="event1Details">Family celebrations, turmeric, flowers, blessings, and the joyful beginning of the wedding festivities. Date and venue can be updated when finalized.</p></div>
           </article>
-          <article class="event-item">
-            <span class="event-no">02</span>
-            <p class="event-telugu">మెహందీ · సంగీత్</p>
-            <h3>Mehendi & Sangeet</h3>
-            <p>An evening of henna, music, dance, laughter, and celebration.</p>
-            <small>7:30 PM – 11:30 PM</small>
+          <article class="festivity-card">
+            <button type="button" aria-expanded="false"><span class="event-index">02</span><h3 data-i18n="event2Title">Mehendi / Sangeeth</h3><span class="event-sub" data-i18n="event2Sub">Henna, music, dance, and laughter.</span></button>
+            <div class="festivity-details"><p data-i18n="event2Details">A vibrant evening of Mehendi and Sangeeth with music, dance, and celebration. 7:30 PM – 11:30 PM. Venue details can be updated when finalized.</p></div>
           </article>
-          <article class="event-item">
-            <span class="event-no">03</span>
-            <p class="event-telugu">పెళ్లి</p>
-            <h3>Muhurtham</h3>
-            <p>The sacred wedding ceremony as Deepthi & Chaitanya begin their life together.</p>
-            <small>November 22, 2026 · 10:30 AM</small>
+          <article class="festivity-card">
+            <button type="button" aria-expanded="false"><span class="event-index">03</span><h3 data-i18n="event3Title">Wedding / Muhurtham</h3><span class="event-sub" data-i18n="event3Sub">The sacred moment we begin our life together.</span></button>
+            <div class="festivity-details"><p data-i18n="event3Details">Sunday, November 22, 2026 · 10:32 AM · Hindu Temple of Florida – Temple Hall, 5509 Lynn Road, Tampa, FL 33624.</p></div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="wedding" class="scene" data-scene="4">
-      <div class="scene-card wedding-card">
-        <p class="eyebrow">The Muhurtham</p>
-        <h2>With divine blessings,<br><span>we become one.</span></h2>
-        <div class="muhurtham-time">
-          <span>Sunday</span><strong>10:30</strong><span>AM</span>
-        </div>
-        <p class="wedding-date">November 22, 2026</p>
-        <div class="gold-rule"><i></i><b>✦</b><i></i></div>
-        <p class="venue">Tampa, Florida</p>
-        <p class="small-note">Venue name, address, dress code, and map button can be added once finalized.</p>
-      </div>
-    </section>
-
-    <section id="rsvp" class="scene" data-scene="5">
+    <section id="rsvp" class="scene">
       <div class="scene-card rsvp-card">
-        <p class="eyebrow">With Love</p>
-        <h2>We can’t wait<br><span>to celebrate with you.</span></h2>
-        <p>Please join our families as we celebrate this beautiful new chapter.</p>
-        <button class="rsvp-button" type="button" id="rsvpButton">RSVP</button>
-        <div class="rsvp-panel" id="rsvpPanel" hidden>
-          <p>RSVP form or Google Form link can be connected here.</p>
-          <button type="button" id="closeRsvp">Close</button>
+        <p class="eyebrow" data-i18n="rsvpEyebrow">With Love</p>
+        <h2 data-i18n="rsvpTitle">RSVP</h2>
+        <p data-i18n="rsvpIntro">We would love to know if you will be celebrating with us.</p>
+        <div class="rsvp-flow" id="rsvpFlow">
+          <div class="rsvp-step active" data-step="1">
+            <label class="field-label" for="guestName" data-i18n="nameLabel">Your Name</label>
+            <input id="guestName" class="rsvp-input" type="text" maxlength="80" autocomplete="name" data-placeholder="namePlaceholder" placeholder="Enter your name" />
+            <button type="button" class="next-btn" id="nameNext" data-i18n="next">Next</button>
+            <p class="rsvp-error" id="nameError" aria-live="polite"></p>
+          </div>
+          <div class="rsvp-step" data-step="2">
+            <p class="rsvp-question" data-i18n="partyQuestion">How will you be joining us?</p>
+            <div class="choice-row">
+              <button type="button" class="choice-btn" data-party="family" data-i18n="family">Family</button>
+              <button type="button" class="choice-btn" data-party="single" data-i18n="single">Single</button>
+            </div>
+          </div>
+          <div class="rsvp-step" data-step="3">
+            <p class="rsvp-question" data-i18n="attendanceQuestion">Will you be joining us?</p>
+            <div class="choice-row">
+              <button type="button" class="choice-btn" data-attendance="yes" data-i18n="yes">YES</button>
+              <button type="button" class="choice-btn" data-attendance="no" data-i18n="no">NO</button>
+            </div>
+          </div>
+          <div class="rsvp-step" data-step="4">
+            <div class="rsvp-result" aria-live="polite">
+              <div class="result-heart">♥</div>
+              <h3 id="resultTitle"></h3>
+              <p id="resultMessage"></p>
+              <button type="button" class="restart-btn" id="restartRsvp" data-i18n="startOver">Start over</button>
+            </div>
+          </div>
         </div>
-        <p class="signature">Deepthi <span>&</span> Chaitanya</p>
-        <p class="telugu blessing">శుభమంగళం</p>
+        <p class="privacy-note" data-i18n="rsvpNote">This preview personalizes the reply on this device. Connect a form or backend later if you want to collect guest responses.</p>
       </div>
     </section>
   </main>
+  <footer><span data-i18n="footer">Made with love · Jaya Deepthi & Sri Chaitanya · 2026</span></footer>
 
-  <footer>Made with love · Deepthi & Chaitanya · 2026</footer>
-  <script src="script.js"></script>
+  <script>
+  (() => {
+    const root = document.documentElement;
+    const scenes = [...document.querySelectorAll('.scene')];
+    const dots = [...document.querySelectorAll('.nav-dot')];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let ticking = false;
+    let currentLang = 'en';
+    let rsvpState = { name:'', party:'', attendance:'' };
+
+    const copy = {
+      en: {
+        welcomeEyebrow:'A Telugu Wedding Story', heroName:'ChaiDeep', chooseLanguage:'Choose your language to enter our celebration.',
+        sriRasthu:'Sri Rasthu', subhamasthu:'Subhamasthu', avighnamasthu:'Avighnamasthu', ganesha:'SHREE Ganeshaya Namaha',
+        inviteMessage:'With the blessings of our families, we joyfully invite you to celebrate the wedding of',
+        brideName:'Jaya Deepthi Gunnam', brideParents:'D/O Narendra Reddy Gunnam<br>Vardhini Gunnam', with:'with',
+        groomName:'Sri Chaitanya Kaza', groomParents:'S/O Venkata Yogeendra Nath Kaza<br>Rama Devi Kaza',
+        dateEyebrow:'A Date To Remember', scratchHeading:'Scratch & Reveal', scratchSub:'A little surprise is waiting underneath.', saveDate:'Save the Date',
+        weddingDate:'Sunday, November 22, 2026', weddingTime:'10:32 AM', venueName:'Hindu Temple of Florida – Temple Hall', venueAddress:'5509 Lynn Road, Tampa, FL 33624',
+        scratchHint:'Scratch with your finger, mouse, or trackpad to reveal the date.', days:'Days', hours:'Hours', minutes:'Minutes', seconds:'Seconds',
+        deviceClock:'Countdown is calculated from your device clock to the Tampa wedding time.', festivitiesEyebrow:'Celebrations', festivitiesTitle:'Wedding Festivities',
+        event1Title:'Pellikuthuru / Pelli Koduku', event1Sub:'A traditional beginning filled with blessings.', event1Details:'Family celebrations, turmeric, flowers, blessings, and the joyful beginning of the wedding festivities. Date and venue can be updated when finalized.',
+        event2Title:'Mehendi / Sangeeth', event2Sub:'Henna, music, dance, and laughter.', event2Details:'A vibrant evening of Mehendi and Sangeeth with music, dance, and celebration. 7:30 PM – 11:30 PM. Venue details can be updated when finalized.',
+        event3Title:'Wedding / Muhurtham', event3Sub:'The sacred moment we begin our life together.', event3Details:'Sunday, November 22, 2026 · 10:32 AM · Hindu Temple of Florida – Temple Hall, 5509 Lynn Road, Tampa, FL 33624.',
+        rsvpEyebrow:'With Love', rsvpTitle:'RSVP', rsvpIntro:'We would love to know if you will be celebrating with us.', nameLabel:'Your Name', namePlaceholder:'Enter your name', next:'Next',
+        partyQuestion:'How will you be joining us?', family:'Family', single:'Single', attendanceQuestion:'Will you be joining us?', yes:'YES', no:'NO', startOver:'Start over',
+        rsvpNote:'This preview personalizes the reply on this device. Connect a form or backend later if you want to collect guest responses.',
+        footer:'Made with love · Jaya Deepthi & Sri Chaitanya · 2026', requiredName:'Please enter your name to continue.',
+        yesTitle:(n)=>`Thank you, ${n}!`, yesMessage:(n)=>`We are so happy that you’ll be celebrating this beautiful day with us, ${n}. Your presence will make our wedding even more special.`,
+        noTitle:(n)=>`Thank you, ${n}!`, noMessage:(n)=>`We’ll miss having you with us, ${n}, but your love and blessings mean so much to us as we begin this beautiful new chapter together.`
+      },
+      te: {
+        welcomeEyebrow:'ఒక తెలుగు వివాహ గాథ', heroName:'చైదీప్', chooseLanguage:'మా వివాహ వేడుకలోకి ప్రవేశించడానికి మీ భాషను ఎంచుకోండి.',
+        sriRasthu:'శ్రీరస్తు', subhamasthu:'శుభమస్తు', avighnamasthu:'అవిఘ్నమస్తు', ganesha:'శ్రీ గణేశాయ నమః',
+        inviteMessage:'మా కుటుంబాల ఆశీర్వాదాలతో, మా వివాహ మహోత్సవానికి విచ్చేసి మమ్మల్ని ఆశీర్వదించవలసిందిగా హృదయపూర్వకంగా ఆహ్వానిస్తున్నాము',
+        brideName:'జయ దీప్తి గున్నం', brideParents:'శ్రీ నరేంద్ర రెడ్డి గున్నం & శ్రీమతి వర్ధిని గున్నం దంపతుల కుమార్తె', with:'తో',
+        groomName:'శ్రీ చైతన్య కాజా', groomParents:'శ్రీ వెంకట యోగీంద్ర నాథ్ కాజా & శ్రీమతి రామా దేవి కాజా దంపతుల కుమారుడు',
+        dateEyebrow:'మరపురాని తేదీ', scratchHeading:'స్క్రాచ్ చేసి చూడండి', scratchSub:'కింద ఒక చిన్న ఆనందకరమైన ఆశ్చర్యం మీ కోసం ఉంది.', saveDate:'మా వివాహ తేదీ',
+        weddingDate:'ఆదివారం, నవంబర్ 22, 2026', weddingTime:'ఉదయం 10:32', venueName:'హిందూ టెంపుల్ ఆఫ్ ఫ్లోరిడా – టెంపుల్ హాల్', venueAddress:'5509 లిన్ రోడ్, టాంపా, FL 33624',
+        scratchHint:'మా వివాహ తేదీ తెలుసుకోవడానికి మీ వేలితో లేదా మౌస్‌తో స్క్రాచ్ చేయండి.', days:'రోజులు', hours:'గంటలు', minutes:'నిమిషాలు', seconds:'సెకన్లు',
+        deviceClock:'మీ పరికరం సమయం ఆధారంగా టాంపా వివాహ సమయానికి కౌంట్‌డౌన్ చూపబడుతుంది.', festivitiesEyebrow:'వేడుకలు', festivitiesTitle:'వివాహ వేడుకలు',
+        event1Title:'పెళ్లికూతురు / పెళ్లికొడుకు', event1Sub:'ఆశీర్వాదాలతో ప్రారంభమయ్యే సంప్రదాయ వేడుక.', event1Details:'పసుపు, పూలు, కుటుంబ సభ్యుల ఆశీర్వాదాలు మరియు ఆనందంతో వివాహ వేడుకలకు శుభారంభం. తేదీ మరియు వేదిక ఖరారైన తర్వాత ఇక్కడ నవీకరించవచ్చు.',
+        event2Title:'మెహందీ / సంగీత్', event2Sub:'మెహందీ, సంగీతం, నృత్యం మరియు ఆనందం.', event2Details:'మెహందీ, సంగీతం, నృత్యం మరియు కుటుంబ ఆనందంతో నిండిన రంగుల సాయంత్రం. రాత్రి 7:30 – 11:30. వేదిక వివరాలు ఖరారైన తర్వాత నవీకరించవచ్చు.',
+        event3Title:'వివాహం / ముహూర్తం', event3Sub:'మా కొత్త జీవితం ప్రారంభమయ్యే పవిత్ర క్షణం.', event3Details:'ఆదివారం, నవంబర్ 22, 2026 · ఉదయం 10:32 · హిందూ టెంపుల్ ఆఫ్ ఫ్లోరిడా – టెంపుల్ హాల్, 5509 లిన్ రోడ్, టాంపా, FL 33624.',
+        rsvpEyebrow:'ప్రేమతో', rsvpTitle:'హాజరు నిర్ధారణ', rsvpIntro:'మీరు మా ఆనందాన్ని పంచుకోవడానికి వస్తున్నారా అని తెలియజేయండి.', nameLabel:'మీ పేరు', namePlaceholder:'మీ పేరు నమోదు చేయండి', next:'కొనసాగండి',
+        partyQuestion:'మీరు ఎలా విచ్చేస్తున్నారు?', family:'కుటుంబంతో', single:'ఒక్కరే', attendanceQuestion:'మీరు మా వివాహ వేడుకకు విచ్చేస్తారా?', yes:'అవును', no:'లేదు', startOver:'మళ్లీ ప్రారంభించండి',
+        rsvpNote:'ఈ ప్రివ్యూ మీ పరికరంలో వ్యక్తిగత సమాధానం చూపిస్తుంది. అతిథుల RSVPలను సేకరించాలంటే తరువాత ఫారం లేదా బ్యాక్‌ఎండ్‌ను అనుసంధానించవచ్చు.',
+        footer:'ప్రేమతో · జయ దీప్తి & శ్రీ చైతన్య · 2026', requiredName:'కొనసాగడానికి దయచేసి మీ పేరు నమోదు చేయండి.',
+        yesTitle:(n)=>`ధన్యవాదాలు, ${n}!`, yesMessage:(n)=>`మా జీవితంలోని ఈ ప్రత్యేకమైన రోజును మీతో కలిసి జరుపుకోవడం మాకు ఎంతో ఆనందంగా ఉంది, ${n}. మీ రాక మా వివాహ వేడుకను మరింత ప్రత్యేకంగా చేస్తుంది.`,
+        noTitle:(n)=>`ధన్యవాదాలు, ${n}!`, noMessage:(n)=>`మీరు మా వెంట ఉండలేకపోయినా, ${n}, మీ ప్రేమాభిమానాలు మరియు ఆశీర్వాదాలు మా కొత్త జీవన ప్రయాణానికి ఎంతో విలువైనవి.`
+      }
+    };
+
+    function setLanguage(lang, scrollToInvitation=false) {
+      currentLang = lang === 'te' ? 'te' : 'en';
+      document.documentElement.lang = currentLang === 'te' ? 'te' : 'en';
+      document.body.classList.toggle('telugu-mode', currentLang === 'te');
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        const val = copy[currentLang][key];
+        if (typeof val === 'string') el.innerHTML = val;
+      });
+      document.querySelectorAll('[data-placeholder]').forEach(el => {
+        const key = el.dataset.placeholder;
+        el.placeholder = copy[currentLang][key] || '';
+      });
+      document.querySelectorAll('[data-lang-mini]').forEach(btn => btn.classList.toggle('active', btn.dataset.langMini === currentLang));
+      redrawScratchCover();
+      if (rsvpState.attendance) renderRsvpResult();
+      if (scrollToInvitation) document.getElementById('invitation').scrollIntoView({behavior:reduceMotion.matches?'auto':'smooth'});
+    }
+
+    document.querySelectorAll('[data-lang]').forEach(btn => btn.addEventListener('click',()=>setLanguage(btn.dataset.lang,true)));
+    document.querySelectorAll('[data-lang-mini]').forEach(btn => btn.addEventListener('click',()=>setLanguage(btn.dataset.langMini,false)));
+
+    function updateScrollArt() {
+      ticking = false;
+      if (reduceMotion.matches) return;
+      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const p = Math.min(1, Math.max(0, window.scrollY / max));
+      const rot = p * 1080;
+      const wave = Math.sin(p * Math.PI * 10);
+      const wave2 = Math.sin(p * Math.PI * 6 + .8);
+      root.style.setProperty('--scroll-rotation', `${rot}deg`);
+      root.style.setProperty('--dance-shift', `${wave * 19}px`);
+      const danceTilt = wave2 * 5.2;
+      const treeSway = wave * 2.2;
+      root.style.setProperty('--dance-tilt', `${danceTilt}deg`);
+      root.style.setProperty('--dance-tilt-neg', `${-danceTilt}deg`);
+      root.style.setProperty('--tree-sway', `${treeSway}deg`);
+      root.style.setProperty('--tree-sway-neg', `${-treeSway}deg`);
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(updateScrollArt); } }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll, {passive:true});
+    updateScrollArt();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          const idx = scenes.indexOf(entry.target);
+          dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+        } else if (entry.intersectionRatio < .12) entry.target.classList.remove('is-visible');
+      });
+    }, {threshold:[.12,.4,.68]});
+    scenes.forEach(scene=>observer.observe(scene));
+
+    document.querySelectorAll('.festivity-card > button').forEach(btn => {
+      btn.addEventListener('click',()=>{
+        const card=btn.closest('.festivity-card');
+        const open=!card.classList.contains('open');
+        document.querySelectorAll('.festivity-card').forEach(c=>{c.classList.remove('open');c.querySelector('button').setAttribute('aria-expanded','false');});
+        if(open){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+      });
+    });
+
+    // Scratch card
+    const scratch = document.getElementById('scratchCanvas');
+    const scratchWrap = document.getElementById('scratchWrap');
+    const sctx = scratch.getContext('2d', {willReadFrequently:true});
+    let drawing=false, scratched=false, moves=0;
+    function fitScratch() {
+      if (scratched) return;
+      const r=scratchWrap.getBoundingClientRect();
+      const dpr=Math.min(window.devicePixelRatio||1,2);
+      scratch.width=Math.max(1,Math.round(r.width*dpr)); scratch.height=Math.max(1,Math.round(r.height*dpr));
+      scratch.style.width=`${r.width}px`; scratch.style.height=`${r.height}px`;
+      sctx.setTransform(dpr,0,0,dpr,0,0);
+      drawScratchCover(r.width,r.height);
+    }
+    function drawScratchCover(w,h){
+      if(scratched) return;
+      sctx.globalCompositeOperation='source-over';
+      const g=sctx.createLinearGradient(0,0,w,h); g.addColorStop(0,'#d9ad56'); g.addColorStop(.5,'#a96f2a'); g.addColorStop(1,'#e6c06d');
+      sctx.fillStyle=g; sctx.fillRect(0,0,w,h);
+      sctx.globalAlpha=.13; sctx.fillStyle='#4A0E17';
+      for(let y=18;y<h;y+=24){for(let x=18;x<w;x+=24){sctx.beginPath();sctx.arc(x+(y%48?8:0),y,2.2,0,Math.PI*2);sctx.fill();}}
+      sctx.globalAlpha=1; sctx.fillStyle='#4A0E17'; sctx.textAlign='center';
+      const label=currentLang==='te'?'మా వివాహ తేదీ తెలుసుకోవడానికి స్క్రాచ్ చేయండి':'SCRATCH TO REVEAL OUR WEDDING DATE';
+      const fontSize=currentLang==='te'?Math.max(16,Math.min(25,w/20)):Math.max(14,Math.min(22,w/24));
+      sctx.font=`600 ${fontSize}px Georgia, serif`; wrapCanvasText(sctx,label,w/2,h/2,w*.76,fontSize*1.5);
+      sctx.font='24px Georgia, serif'; sctx.fillText('✦  ❁  ✦',w/2,h/2+70);
+    }
+    function redrawScratchCover(){ if(!scratched && scratch.width) fitScratch(); }
+    function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
+      const words=text.split(' '); let line='', lines=[];
+      if(currentLang==='te'){ lines=[text]; }
+      else { for(const word of words){const test=line+word+' '; if(ctx.measureText(test).width>maxWidth&&line){lines.push(line.trim());line=word+' ';}else line=test;} if(line)lines.push(line.trim()); }
+      const start=y-((lines.length-1)*lineHeight)/2; lines.forEach((ln,i)=>ctx.fillText(ln,x,start+i*lineHeight));
+    }
+    function pointerPos(e){const r=scratch.getBoundingClientRect(); return {x:e.clientX-r.left,y:e.clientY-r.top};}
+    function eraseAt(x,y){ sctx.globalCompositeOperation='destination-out'; sctx.beginPath(); sctx.arc(x,y,30,0,Math.PI*2); sctx.fill(); }
+    scratch.addEventListener('pointerdown',e=>{if(scratched)return;drawing=true;scratch.setPointerCapture(e.pointerId);const p=pointerPos(e);eraseAt(p.x,p.y);});
+    scratch.addEventListener('pointermove',e=>{if(!drawing||scratched)return;const p=pointerPos(e);eraseAt(p.x,p.y);if(++moves%16===0)checkScratch();});
+    scratch.addEventListener('pointerup',()=>{drawing=false;checkScratch();}); scratch.addEventListener('pointercancel',()=>drawing=false);
+    function checkScratch(){
+      if(scratched)return;
+      const data=sctx.getImageData(0,0,scratch.width,scratch.height).data; let clear=0,total=0;
+      for(let i=3;i<data.length;i+=4*24){total++; if(data[i]<70)clear++;}
+      if(total&&clear/total>.34) revealDate();
+    }
+    function revealDate(){
+      if(scratched)return; scratched=true; scratch.classList.add('revealed'); document.getElementById('scratchHint').style.opacity='.35'; launchConfetti();
+    }
+    window.addEventListener('resize',()=>{clearTimeout(window.__scratchTimer);window.__scratchTimer=setTimeout(fitScratch,120);},{passive:true});
+
+    // Countdown to 10:32 AM Tampa, Florida on Nov 22, 2026 (EST, UTC-05:00)
+    const target=new Date('2026-11-22T10:32:00-05:00').getTime();
+    function updateCountdown(){
+      let diff=Math.max(0,target-Date.now()); const d=Math.floor(diff/86400000); diff%=86400000; const h=Math.floor(diff/3600000); diff%=3600000; const m=Math.floor(diff/60000); const s=Math.floor((diff%60000)/1000);
+      document.getElementById('countDays').textContent=String(d); document.getElementById('countHours').textContent=String(h).padStart(2,'0'); document.getElementById('countMinutes').textContent=String(m).padStart(2,'0'); document.getElementById('countSeconds').textContent=String(s).padStart(2,'0');
+    }
+    updateCountdown(); setInterval(updateCountdown,1000);
+
+    // Lightweight confetti
+    function launchConfetti(){
+      if(reduceMotion.matches)return;
+      const canvas=document.getElementById('confettiCanvas'),ctx=canvas.getContext('2d'); canvas.style.display='block';
+      const dpr=Math.min(window.devicePixelRatio||1,2),w=innerWidth,h=innerHeight; canvas.width=w*dpr; canvas.height=h*dpr; ctx.scale(dpr,dpr);
+      const colors=['#E8C56C','#F6E3A4','#7e944b','#d66f33','#fff2cf'];
+      const pieces=Array.from({length:110},()=>({x:Math.random()*w,y:-20-Math.random()*h*.35,vx:(Math.random()-.5)*3,vy:2+Math.random()*4,r:3+Math.random()*5,rot:Math.random()*6.28,vr:(Math.random()-.5)*.2,c:colors[Math.floor(Math.random()*colors.length)]}));
+      const start=performance.now(); function frame(now){ctx.clearRect(0,0,w,h);for(const p of pieces){p.x+=p.vx;p.y+=p.vy;p.vy+=.035;p.rot+=p.vr;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.c;ctx.fillRect(-p.r,-p.r/2,p.r*2,p.r);ctx.restore();} if(now-start<3300)requestAnimationFrame(frame);else{ctx.clearRect(0,0,w,h);canvas.style.display='none';}} requestAnimationFrame(frame);
+    }
+
+    // RSVP flow
+    const steps=[...document.querySelectorAll('.rsvp-step')];
+    function showStep(n){steps.forEach(s=>s.classList.toggle('active',Number(s.dataset.step)===n));}
+    document.getElementById('nameNext').addEventListener('click',()=>{const input=document.getElementById('guestName');const name=input.value.trim().replace(/\s+/g,' ');if(!name){document.getElementById('nameError').textContent=copy[currentLang].requiredName;input.focus();return;}document.getElementById('nameError').textContent='';rsvpState.name=name;showStep(2);});
+    document.querySelectorAll('[data-party]').forEach(btn=>btn.addEventListener('click',()=>{rsvpState.party=btn.dataset.party;showStep(3);}));
+    document.querySelectorAll('[data-attendance]').forEach(btn=>btn.addEventListener('click',()=>{rsvpState.attendance=btn.dataset.attendance;renderRsvpResult();showStep(4);}));
+    function renderRsvpResult(){if(!rsvpState.attendance)return;const yes=rsvpState.attendance==='yes';document.getElementById('resultTitle').textContent=yes?copy[currentLang].yesTitle(rsvpState.name):copy[currentLang].noTitle(rsvpState.name);document.getElementById('resultMessage').textContent=yes?copy[currentLang].yesMessage(rsvpState.name):copy[currentLang].noMessage(rsvpState.name);}
+    document.getElementById('restartRsvp').addEventListener('click',()=>{rsvpState={name:'',party:'',attendance:''};document.getElementById('guestName').value='';showStep(1);});
+    document.getElementById('guestName').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('nameNext').click();});
+
+    setLanguage('en');
+    requestAnimationFrame(fitScratch);
+  })();
+  </script>
 </body>
 </html>
